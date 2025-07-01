@@ -29,3 +29,15 @@ footer {
     background-color: #1a1a1a;
     border-top: 1px solid #444;
 }
+
+/* Set all links to lime green */
+a {
+  color: #00ff00;
+  text-decoration: none;
+}
+
+/* Optional: make links glow slightly on hover */
+a:hover {
+  color: #66ff66; 
+  text-decoration: underline;
+}
