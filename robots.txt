@@ -1,0 +1,3 @@
+# todo, add searchmap. 
+User-agent: *
+Allow: /
