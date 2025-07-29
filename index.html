@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Lift Laboratorium | Technological projects by Joshua Adcock</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Lift Laboratorium is a collection of personal research projects by Joshua Adcock, focused on the UAV design, control systems, and computer sciences.">
+    <meta name="description"
+        content="Lift Laboratorium is a collection of personal research projects by Joshua Adcock, focused on the UAV design, control systems, and computer sciences.">
     <meta name="author" content="Joshua Adcock">
     <meta property="og:image" content="/images/Liftlaboratorium_logo.png">
-    <meta name="google-site-verification" content="EF9FjLwnEFv88fGiT91AwAsQLu6mbgpw_w-FrasZpnw"/> 
+    <meta name="google-site-verification" content="EF9FjLwnEFv88fGiT91AwAsQLu6mbgpw_w-FrasZpnw" />
     <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
@@ -15,6 +17,7 @@
     <link rel="canonical" href="https://liftlaboratorium.com/">
     <link rel="stylesheet" href="/css/styles.css">
 </head>
+
 <body>
     <div id="header-placeholder"></div>
 
@@ -22,17 +25,23 @@
         <section id="intro">
             <h1>Welcome</h1>
             <p>
-                Hello! I’m Joshua Adcock, an Electrical Engineering student with a passion for hands-on learning through complex projects. 
-                This site is a living collection of the experiments and systems I’ve designed to explore flight, control, simulation, computer science and 
+                Hello! I’m Joshua Adcock, an Electrical Engineering student with a passion for hands-on learning through
+                complex projects.
+                This site is a living collection of the experiments and systems I’ve designed to explore flight,
+                control, simulation, computer science and
                 anything else I happen to find interest in.
             </p>
             <p>
-                Currently, I am working on getting the site structure the way I like it, this means I am doing a lot of work behind-the-scenes. 
-                However, I will soon start publishing and refining the project pages for my scratch-build lidar, the Triad project, the Levo simulator, 
-                and the DragonFlight project, with many more to come! If any of this interests you, bookmark this page and come back in a few days. 
-                Until then, If you have suggestions for future projects, improvements on existing projects, requests for more information, 
+                Currently, I am working on getting the site structure the way I like it, this means I am doing a lot of
+                work behind-the-scenes.
+                However, I will soon start publishing and refining the project pages for my scratch-build lidar, the
+                Triad project, the Levo simulator,
+                and the DragonFlight project, with many more to come! If any of this interests you, bookmark this page
+                and come back in a few days.
+                Until then, If you have suggestions for future projects, improvements on existing projects, requests for
+                more information,
                 or would simply like to say hello, feel free to reach me directly through the contact page.
-            </p>    
+            </p>
             <p>
                 Again, this site is work in progress, thanks for following along as this site continues to improve!
             </p>
@@ -42,25 +51,27 @@
 
             <!-- Default project tab, add more as needed - remember to update the project page! -->
             <a href="/projects/template.html" class="project-card-link">
-            	<div class="project-card">
-                	<h3>Default Project</h3>
-                	<p>-- Text discription here -- </p>
-            	</div>
+                <div class="project-card">
+                    <h3>Default Project</h3>
+                    <p>-- Text discription here -- </p>
+                </div>
             </a>
-            
+
         </section>
         <section id="about">
             <h2>About</h2>
             <p>
-                Lift Laboratorium is home to my personal research projects that are focused on UAV development, experimental aircraft, robotics, 
-                autonomous systems, embedded electronics, and simulation software. Projects here highlight engineering, design, software development, 
+                Lift Laboratorium is home to my personal research projects that are focused on UAV development,
+                experimental aircraft, robotics,
+                autonomous systems, embedded electronics, and simulation software. Projects here highlight engineering,
+                design, software development,
                 and hands-on learning in flight systems and creative technology.
             </p>
         </section>
     </main>
     <script>
         function toggleMenu() {
-        document.querySelector('.nav-menu').classList.toggle('active');
+            document.querySelector('.nav-menu').classList.toggle('active');
         }
     </script>
     <script>
@@ -69,13 +80,20 @@
             .then(html => {
                 document.getElementById("header-placeholder").innerHTML = html;
 
-                const script = document.createElement('script');
-                script.src = "/js/header.js";
-                document.body.appendChild(script);
-        });
+                const toggleButton = document.querySelector('.menu-toggle');
+                const navMenu = document.querySelector('.nav-menu');
+
+                if (toggleButton && navMenu) {
+                    toggleButton.addEventListener('click', () => {
+                        navMenu.classList.toggle('active');
+                    });
+                }
+            });
     </script>
+
     <footer>
         <p>© 2025 Lift Laboratorium. Built by Joshua Adcock.</p>
     </footer>
 </body>
+
 </html>

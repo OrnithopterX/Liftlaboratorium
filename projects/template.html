@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>Project name | Lift Laboratorium</title>
   <meta charset="UTF-8">
@@ -12,6 +13,7 @@
   <link rel="manifest" href="../favicons/site.webmanifest">
   <link rel="stylesheet" href="../css/styles.css">
 </head>
+
 <body>
   <div id="header-placeholder"></div>
 
@@ -30,7 +32,7 @@
       <section>
         <h1>Title of Project</h1>
         <p>This is the main project description. It could include key features, goals, and technical highlights.</p>
-        
+
         <!-- added expanding text box -->
         <div class="expand-box">
           <button class="expand-toggle" onclick="toggleExpand(this)">More Info ▾</button>
@@ -46,16 +48,16 @@
       <section>
         <h2>Update Log</h2>
         <ul>
-          <li><strong>2025-07-28:</strong> Started designing the new project page format.</li>
-          <li><strong>2025-07-25:</strong> Deleted old pages to refactor layout system.</li>
-          <li><strong>2025-07-20:</strong> Added 3D viewer plan using `.glb` + Blender export.</li>
+          <li><strong>2025-07-29:</strong> Started designing the new project page format.</li>
         </ul>
       </section>
     </div>
 
   </main>
 
-  <footer><p>© 2025 Lift Laboratorium</p></footer>
+  <footer>
+    <p>© 2025 Lift Laboratorium</p>
+  </footer>
 
   <script>
     fetch("/components/header.html")
@@ -63,19 +65,24 @@
       .then(html => {
         document.getElementById("header-placeholder").innerHTML = html;
 
-        const script = document.createElement('script');
-        script.src = "/js/header.js";
-        document.body.appendChild(script);
+        const toggleButton = document.querySelector('.menu-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (toggleButton && navMenu) {
+          toggleButton.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+          });
+        }
       });
   </script>
   <script>
     function showTab(tabId) {
       const tabs = document.querySelectorAll('.tab-content');
       const buttons = document.querySelectorAll('.tab-button');
-    
+
       tabs.forEach(tab => tab.classList.remove('active-tab'));
       buttons.forEach(btn => btn.classList.remove('active'));
-    
+
       document.getElementById(tabId).classList.add('active-tab');
       event.target.classList.add('active');
     }
@@ -84,7 +91,7 @@
     function toggleExpand(button) {
       const box = button.parentElement;
       box.classList.toggle("active");
-    
+
       // Change arrow icon
       button.innerHTML = box.classList.contains("active")
         ? "Less Info ▴"
@@ -94,4 +101,5 @@
 
 
 </body>
+
 </html>

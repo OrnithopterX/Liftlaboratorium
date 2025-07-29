@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>Projects | Lift Laboratorium</title>
   <meta charset="UTF-8">
@@ -12,6 +13,7 @@
   <link rel="manifest" href="../favicons/site.webmanifest">
   <link rel="stylesheet" href="../css/styles.css">
 </head>
+
 <body>
   <div id="header-placeholder"></div>
 
@@ -34,20 +36,27 @@
     </section>
 
   </main>
-  
+
   <script>
     fetch("/components/header.html")
       .then(res => res.text())
       .then(html => {
         document.getElementById("header-placeholder").innerHTML = html;
-        console.log("Header loaded");
 
-        const script = document.createElement('script');
-        script.src = "/js/header.js";
-        document.body.appendChild(script);
+        const toggleButton = document.querySelector('.menu-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (toggleButton && navMenu) {
+          toggleButton.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+          });
+        }
       });
   </script>
 
-  <footer><p>© 2025 Lift Laboratorium</p></footer>
+  <footer>
+    <p>© 2025 Lift Laboratorium</p>
+  </footer>
 </body>
+
 </html>

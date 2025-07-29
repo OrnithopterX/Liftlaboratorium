@@ -18,14 +18,19 @@
 In the scripts section: 
 
     <script>
-    fetch("/components/header.html")
-        .then(res => res.text())
-        .then(html => {
+        fetch("/components/header.html")
+            .then(res => res.text())
+            .then(html => {
             document.getElementById("header-placeholder").innerHTML = html;
 
-            const script = document.createElement('script');
-            script.src = "/js/header.js";
-            document.body.appendChild(script);
+            const toggleButton = document.querySelector('.menu-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+
+            if (toggleButton && navMenu) {
+                toggleButton.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                });
+            }
         });
     </script>
     
