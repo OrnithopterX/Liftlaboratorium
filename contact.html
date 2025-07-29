@@ -6,33 +6,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Lift Laboratorium contact page.">
   <meta name="author" content="Joshua Adcock">
-  <meta property="og:image" content="images/Liftlaboratorium_logo.png">
-  <link rel="stylesheet" href="css/styles.css">
-  <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
-  <link rel="manifest" href="favicons/site.webmanifest">
+  <meta property="og:image" content="/images/Liftlaboratorium_logo.png">
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+  <link rel="manifest" href="/favicons/site.webmanifest">
+  
+  <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-  <header>
-    <h1>Contact</h1>
-    <p>Let’s talk ideas, collaboration, or questions!</p>
-  </header>
 
-  <main style="padding: 2rem;">
-    <p>Feel free to reach me directly at:</p>
-    <p>
-      <a>buffalo3Design@gmail.com</a>
-    </p>
+  <div id="header-placeholder"></div>
 
-    <p>Or find me here:</p>
-    <ul>
-      <li><a href="https://github.com/OrnithopterX" target="_blank">GitHub</a></li>
-      <li><a href="https://www.linkedin.com/in/joshua-adcock-82a22326b/" target="_blank">LinkedIn</a></li>
-    </ul>
+  <main class="page-content">
+    <section id="contact information">
+      <h1>Contact</h1>
+      <p>Let’s talk ideas, collaboration, or questions!</p>
+      <p>Feel free to reach me directly at:</p>
+      <p>
+        <a href="mailto:liftlaboratorium@gmail.com">liftlaboratorium@gmail.com</a>
+      </p>
 
-    <p><a href="index.html">← Back to Home</a></p>
+      <p>Or find me here:</p>
+      <ul>
+        <li><a href="https://github.com/OrnithopterX" target="_blank">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/joshua-adcock-82a22326b/" target="_blank">LinkedIn</a></li>
+      </ul>
+    </section>
+
   </main>
+
+  <script>
+    fetch("/components/header.html")
+        .then(res => res.text())
+        .then(html => {
+            document.getElementById("header-placeholder").innerHTML = html;
+
+            const script = document.createElement('script');
+            script.src = "/js/header.js";
+            document.body.appendChild(script);
+        });
+    </script>
 
   <footer>
     <p>© 2025 Lift Laboratorium</p>

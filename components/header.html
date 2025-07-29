@@ -1,0 +1,32 @@
+<header class="top-header center-header">
+  <div class="logo" onclick="location.href='/index.html'">Lift Laboratorium</div>
+
+  <button class="menu-toggle">☰</button>
+
+  <nav class="nav-menu">
+    <a href="/projects/projects.html">Projects</a>
+    <a href="/contact.html">Contact</a>
+  </nav>
+</header>
+
+<!-- Add the following each page:
+
+ In place of the header: 
+
+<div id="header-placeholder"></div>
+
+In the scripts section: 
+
+    <script>
+    fetch("/components/header.html")
+        .then(res => res.text())
+        .then(html => {
+            document.getElementById("header-placeholder").innerHTML = html;
+
+            const script = document.createElement('script');
+            script.src = "/js/header.js";
+            document.body.appendChild(script);
+        });
+    </script>
+    
+-->

@@ -6,21 +6,92 @@
   <meta name="description" content="Description here.">
   <meta name="author" content="Joshua Adcock">
   <meta property="og:image" content="../images/Liftlaboratorium_logo.png">
-  <link rel="stylesheet" href="../css/styles.css">
   <link rel="apple-touch-icon" sizes="180x180" href="../favicons/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="../favicons/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="../favicons/favicon-16x16.png">
   <link rel="manifest" href="../favicons/site.webmanifest">
+  <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
-  <header>
-    <h1>Title page</h1>
-    <p>title description.</p>
-  </header>
-  <main>
-    <p>Body text.</p>
-    <p><a href="../index.html">← Back to Home</a></p>
+  <div id="header-placeholder"></div>
+
+  <main class="page-content">
+    <section id="discription here">
+      <h1> Title of project </h1>
+      <p>Body text</p>
+    </section>
+
+    <div class="tab-container">
+      <button class="tab-button active" onclick="showTab('overview')">Overview</button>
+      <button class="tab-button" onclick="showTab('blog')">Blog / Timeline</button>
+    </div>
+
+    <div id="overview" class="tab-content active-tab">
+      <section>
+        <h1>Title of Project</h1>
+        <p>This is the main project description. It could include key features, goals, and technical highlights.</p>
+        
+        <!-- added expanding text box -->
+        <div class="expand-box">
+          <button class="expand-toggle" onclick="toggleExpand(this)">More Info ▾</button>
+          <div class="expand-content">
+            <p>This section contains additional information about the project. Click again to collapse it.</p>
+          </div>
+        </div>
+
+      </section>
+    </div>
+
+    <div id="blog" class="tab-content">
+      <section>
+        <h2>Update Log</h2>
+        <ul>
+          <li><strong>2025-07-28:</strong> Started designing the new project page format.</li>
+          <li><strong>2025-07-25:</strong> Deleted old pages to refactor layout system.</li>
+          <li><strong>2025-07-20:</strong> Added 3D viewer plan using `.glb` + Blender export.</li>
+        </ul>
+      </section>
+    </div>
+
   </main>
+
   <footer><p>© 2025 Lift Laboratorium</p></footer>
+
+  <script>
+    fetch("/components/header.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("header-placeholder").innerHTML = html;
+
+        const script = document.createElement('script');
+        script.src = "/js/header.js";
+        document.body.appendChild(script);
+      });
+  </script>
+  <script>
+    function showTab(tabId) {
+      const tabs = document.querySelectorAll('.tab-content');
+      const buttons = document.querySelectorAll('.tab-button');
+    
+      tabs.forEach(tab => tab.classList.remove('active-tab'));
+      buttons.forEach(btn => btn.classList.remove('active'));
+    
+      document.getElementById(tabId).classList.add('active-tab');
+      event.target.classList.add('active');
+    }
+  </script>
+  <script>
+    function toggleExpand(button) {
+      const box = button.parentElement;
+      box.classList.toggle("active");
+    
+      // Change arrow icon
+      button.innerHTML = box.classList.contains("active")
+        ? "Less Info ▴"
+        : "More Info ▾";
+    }
+  </script>
+
+
 </body>
 </html>

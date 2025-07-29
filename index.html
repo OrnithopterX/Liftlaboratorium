@@ -13,20 +13,14 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
     <link rel="manifest" href="/favicons/site.webmanifest">
     <link rel="canonical" href="https://liftlaboratorium.com/">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <header>
-        <h1>Lift Laboratorium</h1>
-        <p>Experimental Flight. Autonomous Systems. Control in Motion.</p>
-        <nav>
-            <a href="index.html">Home</a> |
-            <a href="contact.html">Contact</a>
-        </nav>
-    </header>
-    <main>
+    <div id="header-placeholder"></div>
+
+    <main class="page-content">
         <section id="intro">
-            <h2>Welcome</h2>
+            <h1>Welcome</h1>
             <p>
                 Hello! I’m Joshua Adcock, an Electrical Engineering student with a passion for hands-on learning through complex projects. 
                 This site is a living collection of the experiments and systems I’ve designed to explore flight, control, simulation, computer science and 
@@ -45,25 +39,12 @@
         </section>
         <section id="projects">
             <h2>Featured Projects</h2>
-            
-            <a href="projects/levosimulator.html" class="project-card-link">
+
+            <!-- Default project tab, add more as needed - remember to update the project page! -->
+            <a href="/projects/template.html" class="project-card-link">
             	<div class="project-card">
-			<h3>Levo Simulator</h3>
-                	<p>A lightweight aircraft simulation platform for testing unconventional designs, currently a work in progress.</p>
-           	</div>
-            </a>
-            
-            <a href="projects/triad.html" class="project-card-link">
-            	<div class="project-card">
-                	<h3>Triad</h3>
-                	<p>A compact single-propeller VTOL with full axis control and torque compensation.</p>
-            	</div>
-            </a>
-            
-            <a href="projects/dragonflight.html" class="project-card-link">
-            	<div class="project-card">
-                	<h3>Dragonflight</h3>
-                	<p>A 6 degree of freedom ornithopter with research in mind.</p>
+                	<h3>Default Project</h3>
+                	<p>-- Text discription here -- </p>
             	</div>
             </a>
             
@@ -77,6 +58,22 @@
             </p>
         </section>
     </main>
+    <script>
+        function toggleMenu() {
+        document.querySelector('.nav-menu').classList.toggle('active');
+        }
+    </script>
+    <script>
+        fetch("/components/header.html")
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById("header-placeholder").innerHTML = html;
+
+                const script = document.createElement('script');
+                script.src = "/js/header.js";
+                document.body.appendChild(script);
+        });
+    </script>
     <footer>
         <p>© 2025 Lift Laboratorium. Built by Joshua Adcock.</p>
     </footer>
