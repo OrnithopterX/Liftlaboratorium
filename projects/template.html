@@ -27,8 +27,8 @@
     <div class="full-width-switch">
       <input type="checkbox" id="viewToggle">
       <label for="viewToggle" class="switch-labels">
-        <span class="label-left">Main</span>
         <span class="slider-pill"></span>
+        <span class="label-left">Main</span>
         <span class="label-right">Timeline</span>
       </label>
     </div>
@@ -81,7 +81,6 @@
       });
   </script>
 
-
   <script>
     function toggleTabs() {
       const isTimeline = document.getElementById("viewToggle").checked;
@@ -99,8 +98,6 @@
     });
   </script>
 
-
-
   <script>
     function showTab(tabId) {
       const tabs = document.querySelectorAll('.tab-content');
@@ -113,6 +110,7 @@
       event.target.classList.add('active');
     }
   </script>
+
   <script>
     function toggleExpand(button) {
       const box = button.parentElement;

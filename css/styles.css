@@ -235,15 +235,15 @@ a[href]:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+  background-color: #111;
   border: 2px solid #00ff00;
   border-radius: 50px;
-  background-color: #111;
-  position: relative;
   padding: 0.75em 1em;
+  cursor: pointer;
+  overflow: hidden;
   font-weight: bold;
   color: #00ff00;
-  cursor: pointer;
-  transition: background-color 0.3s;
 }
 
 .label-left,
@@ -253,28 +253,31 @@ a[href]:hover {
   z-index: 2;
   pointer-events: none;
   transition: color 0.3s ease;
+  position: relative;
 }
 
+/* Slider Pill (Underneath) */
 .slider-pill {
   position: absolute;
   top: 4px;
   bottom: 4px;
   left: 4px;
   width: calc(50% - 4px);
-  /* 4px right padding */
-  background-color: #00ff00;
+  background-color: rgba(0, 255, 0, 0.25); /* translucent green */
   border-radius: 50px;
   z-index: 1;
   transition: transform 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.25);
 }
 
-/* Move pill */
-.full-width-switch input:checked+.switch-labels .slider-pill {
+/* Move pill right when checked */
+.full-width-switch input:checked + .switch-labels .slider-pill {
   transform: translateX(100%);
 }
 
-/* Color logic */
-.full-width-switch input:checked+.switch-labels .label-left,
-.full-width-switch input:not(:checked)+.switch-labels .label-right {
+/* Active label gets dark for contrast */
+.full-width-switch input:checked + .switch-labels .label-left,
+.full-width-switch input:not(:checked) + .switch-labels .label-right {
   color: #111;
+  font-weight: 900;
 }
