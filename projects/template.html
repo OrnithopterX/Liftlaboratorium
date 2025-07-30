@@ -20,13 +20,17 @@
 
   <main class="page-content">
     <section id="discription here">
-      <h1> Title of project </h1>
+      <h1>Title of project</h1>
       <p>Body text</p>
     </section>
 
-    <div class="tab-container">
-      <button class="tab-button active" onclick="showTab('overview')">Overview</button>
-      <button class="tab-button" onclick="showTab('blog')">Blog / Timeline</button>
+    <div class="full-width-switch">
+      <input type="checkbox" id="viewToggle">
+      <label for="viewToggle" class="switch-labels">
+        <span class="label-left">Main</span>
+        <span class="slider-pill"></span>
+        <span class="label-right">Timeline</span>
+      </label>
     </div>
 
     <div id="overview" class="tab-content active-tab">
@@ -76,6 +80,27 @@
         }
       });
   </script>
+
+
+  <script>
+    function toggleTabs() {
+      const isTimeline = document.getElementById("viewToggle").checked;
+
+      document.getElementById("overview").classList.toggle("active-tab", !isTimeline);
+      document.getElementById("blog").classList.toggle("active-tab", isTimeline);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const toggle = document.getElementById("viewToggle");
+      toggle.addEventListener("change", toggleTabs);
+
+      // Run once on load
+      toggleTabs();
+    });
+  </script>
+
+
+
   <script>
     function showTab(tabId) {
       const tabs = document.querySelectorAll('.tab-content');
@@ -100,7 +125,5 @@
     }
   </script>
 
-
 </body>
-
 </html>

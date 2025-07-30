@@ -41,12 +41,13 @@ footer {
   cursor: pointer;
   color: #fff;
 }
+
 .logo:hover {
   color: #00ff00;
   text-shadow: 0 0 8px #00ff00;
 }
 
-/* === HREF === */ 
+/* === HREF === */
 a[href] {
   color: #00ff00;
   text-decoration: none;
@@ -115,7 +116,6 @@ a[href]:hover {
   }
 }
 
-
 /* === Project Cards === */
 .project-card {
   background-color: #222;
@@ -136,23 +136,17 @@ a[href]:hover {
 .project-card-link:hover .project-card {
   background-color: #111;
   box-shadow: 0 0 10px #00ff00;
-  border-left: 4px solid #00ff00; /* keep size consistent */
-}
-
-/* === Search Input === */
-#search {
-  padding: 0.25em;
-  border: 1px solid #00ff00;
-  background-color: #000;
-  color: #00ff00;
+  border-left: 4px solid #00ff00;
+  /* keep size consistent */
 }
 
 /* === Page Offset for Fixed Header === */
 .page-content {
-  padding-top: 120px; /* height of sticky header + margin */
+  padding-top: 100px;
+  /* height of sticky header + margin */
 }
 
-/* === Tab styles == */ 
+/* === Tab styles == */
 .tab-container {
   display: flex;
   justify-content: center;
@@ -220,6 +214,67 @@ a[href]:hover {
 }
 
 .expand-box.active .expand-content {
-  max-height: 200px; /* adjust as needed */
+  max-height: 200px;
+  /* adjust as needed */
   padding: 1em;
+}
+
+/* === Full size switch === */
+.full-width-switch {
+  width: 100%;
+  max-width: 600px;
+  margin: 2em auto;
+  position: relative;
+}
+
+.full-width-switch input[type="checkbox"] {
+  display: none;
+}
+
+.switch-labels {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid #00ff00;
+  border-radius: 50px;
+  background-color: #111;
+  position: relative;
+  padding: 0.75em 1em;
+  font-weight: bold;
+  color: #00ff00;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.label-left,
+.label-right {
+  flex: 1;
+  text-align: center;
+  z-index: 2;
+  pointer-events: none;
+  transition: color 0.3s ease;
+}
+
+.slider-pill {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 4px;
+  width: calc(50% - 4px);
+  /* 4px right padding */
+  background-color: #00ff00;
+  border-radius: 50px;
+  z-index: 1;
+  transition: transform 0.3s ease;
+}
+
+/* Move pill */
+.full-width-switch input:checked+.switch-labels .slider-pill {
+  transform: translateX(100%);
+}
+
+/* Color logic */
+.full-width-switch input:checked+.switch-labels .label-left,
+.full-width-switch input:not(:checked)+.switch-labels .label-right {
+  color: #111;
 }
