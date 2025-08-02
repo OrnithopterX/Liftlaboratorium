@@ -75,11 +75,6 @@
   </footer>
 
   <script>
-    function toggleMenu() {
-      document.querySelector('.nav-menu').classList.toggle('active');
-    }
-  </script>
-  <script>
     fetch("/components/header.html")
       .then(res => res.text())
       .then(html => {

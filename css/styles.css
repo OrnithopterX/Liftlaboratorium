@@ -59,7 +59,7 @@ a[href]:hover {
 }
 
 
-/* === Navigation Menu === */
+/* Navigation Menu */
 .nav-menu {
   display: flex;
   gap: 1.5em;
@@ -97,7 +97,7 @@ a[href]:hover {
   .menu-toggle {
     display: block;
     position: absolute;
-    top: 1em;
+    top: center;
     left: 1em;
   }
 
@@ -105,10 +105,9 @@ a[href]:hover {
     display: none !important;
     flex-direction: column;
     align-items: center;
-    background-color: #111;
+    background: none; 
     width: 100%;
     padding: 1em 0;
-    border-top: 1px solid #444;
   }
 
   .nav-menu.active {
@@ -140,7 +139,7 @@ a[href]:hover {
   /* keep size consistent */
 }
 
-/* === Page Offset for Fixed Header === */
+/* Page Offset for Fixed Header */
 .page-content {
   padding-top: 100px;
   /* height of sticky header + margin */
