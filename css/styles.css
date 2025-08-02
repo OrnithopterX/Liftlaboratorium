@@ -255,6 +255,7 @@ a[href]:hover {
   transition: color 0.3s ease;
   position: relative;
   white-space: nowrap;
+  color: #111; 
 }
 
 .slider-pill {
@@ -263,11 +264,11 @@ a[href]:hover {
   bottom: 4px;
   left: 4px;
   width: calc(50% - 4px);
-  background-color: rgba(0, 255, 0, 0.25);
+  background-color: rgba(0, 255, 0, 1); /* update this as needed! 8*/ 
   border-radius: 50px;
   z-index: 1;
   transition: transform 0.3s ease;
-  box-shadow: 0 0 10px rgba(0, 255, 0, 0.25);
+  box-shadow: 0 0 8px #00ff00;
 }
 
 /* Move pill right when checked */
@@ -278,6 +279,6 @@ a[href]:hover {
 /* Switch label contrast */
 .full-width-switch input:checked + .switch-labels .label-left,
 .full-width-switch input:not(:checked) + .switch-labels .label-right {
-  color: #111;
+  color: #fff;
   font-weight: 900;
 }
