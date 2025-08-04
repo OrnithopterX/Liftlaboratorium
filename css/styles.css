@@ -40,11 +40,18 @@ footer {
   font-size: 1.75em;
   cursor: pointer;
   color: #fff;
+  top: center;
 }
 
 .logo:hover {
   color: #00ff00;
   text-shadow: 0 0 8px #00ff00;
+}
+
+@media (max-width: 500px) {
+  .logo {
+    font-size: 1.2em;
+  }
 }
 
 /* === HREF === */
@@ -264,7 +271,7 @@ a[href]:hover {
   bottom: 4px;
   left: 4px;
   width: calc(50% - 4px);
-  background-color: rgba(0, 255, 0, 1); /* update this as needed! 8*/ 
+  background-color: rgba(0, 255, 0, 0.8); /* update this as needed! */ 
   border-radius: 50px;
   z-index: 1;
   transition: transform 0.3s ease;
