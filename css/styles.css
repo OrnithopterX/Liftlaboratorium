@@ -122,12 +122,28 @@ a[href]:hover {
   }
 }
 
+/* === Blog Cards === */ 
+.blog-card {
+  background-color: #222;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #444;
+  border-left-width: 4px;
+  border-left-color: #fff; 
+  border-radius: 4px;
+}
+
 /* === Project Cards === */
 .project-card {
   background-color: #222;
   padding: 1rem;
   margin-bottom: 1rem;
-  border-left: 4px solid #00ff00;
+  border: 1px solid #444;
+  border-radius: 6px; 
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-left-color:#00ff00;
+  border-left-width: 1px; 
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -138,12 +154,11 @@ a[href]:hover {
   display: block;
 }
 
-/* Fix shifting by preserving layout space */
 .project-card-link:hover .project-card {
   background-color: #111;
+  border-color: #111; /* to match the background color */ 
   box-shadow: 0 0 10px #00ff00;
-  border-left: 4px solid #00ff00;
-  /* keep size consistent */
+  border-left: 1px solid #00ff00;
 }
 
 /* Page Offset for Fixed Header */
@@ -194,20 +209,20 @@ a[href]:hover {
 }
 
 .expand-toggle {
-  background-color: #111;
-  color: #00ff00;
-  border: 1px solid #00ff00;
+  background-color: #222;
+  color: #fff;
+  border: 1px solid #fff;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
   padding: 0.5em 1em;
   cursor: pointer;
   font-weight: bold;
-  border-radius: 4px;
   width: 100%;
   text-align: left;
 }
 
 .expand-toggle:hover {
-  background-color: #00ff00;
-  color: #111;
+  background-color: #111;
 }
 
 .expand-content {
@@ -216,7 +231,12 @@ a[href]:hover {
   transition: max-height 0.3s ease;
   background-color: #222;
   padding: 0 1em;
-  border-left: 2px solid #00ff00;
+  border: 1px solid #444;
+  border-top-width: 0px;
+  border-left-width: 3px;
+  border-left-color: #fff; 
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
 }
 
 .expand-box.active .expand-content {
