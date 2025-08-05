@@ -10,6 +10,11 @@ main {
   padding: 2rem;
 }
 
+p {
+  line-height: 1.6;
+  margin-bottom: 1.5em; /* Adds breathing room between paragraphs */
+}
+
 footer {
   text-align: center;
   padding: 1rem;
@@ -231,6 +236,7 @@ a[href]:hover {
 }
 
 .expand-content {
+  display: none; /* hidden until active */ 
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s ease;
@@ -245,6 +251,7 @@ a[href]:hover {
 }
 
 .expand-box.active .expand-content {
+  display: block;
   max-height: 200px;
   /* adjust as needed */
   padding: 1em;
@@ -313,4 +320,30 @@ a[href]:hover {
 .full-width-switch input:not(:checked) + .switch-labels .label-right {
   color: #fff;
   font-weight: 900;
+}
+
+/* === Media === */ 
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+  margin-bottom: 1rem;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.image-wrapper {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto 1.5rem;
 }
