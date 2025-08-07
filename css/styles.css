@@ -12,7 +12,11 @@ main {
 
 p {
   line-height: 1.6;
-  margin-bottom: 1.5em; /* Adds breathing room between paragraphs */
+  margin-bottom: 1.5em;
+}
+
+li {
+  line-height: 1.6;
 }
 
 footer {
@@ -26,26 +30,37 @@ footer {
 .top-header {
   position: fixed;
   top: 0;
-  left: 0;
-  right: 0;
-  background-color: #222;
+  width: 100%;
+  background: #222;
   color: #00ff00;
+  border-bottom: 2px solid #00ff00;
+  z-index: 1000;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1rem 1.5rem;
-  z-index: 1000;
-  border-bottom: 2px solid #00ff00;
-  text-align: center;
+  transition: background 0.3s ease;
 }
 
-/* Logo */
+.header-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  margin: 0 auto;
+  width: 100%;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+}
+
 .logo {
+  flex: 1;
+  text-align: center;
+  font-size: 1.75rem;
   font-weight: bold;
-  font-size: 1.75em;
-  cursor: pointer;
   color: #fff;
-  top: center;
+  cursor: pointer;
+  transition: color 0.2s ease, text-shadow 0.2s ease;
 }
 
 .logo:hover {
@@ -53,7 +68,6 @@ footer {
   text-shadow: 0 0 8px #00ff00;
 }
 
-/* === HREF === */
 a[href] {
   color: #00ff00;
   text-decoration: none;
@@ -64,23 +78,34 @@ a[href]:hover {
   text-decoration: underline;
 }
 
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  color: #fff;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+}
 
-/* Navigation Menu */
 .nav-menu {
   display: flex;
-  gap: 1.5em;
-  margin-top: 0.5em;
+  gap: 1em;
+  margin-bottom: 0.5em;
   flex-wrap: wrap;
   justify-content: center;
 }
 
 .nav-menu a {
   font-weight: bold;
-  padding: 0.25em 0.5em;
   color: #00ff00;
   text-decoration: none;
+  padding: 0.5em 1em;
   border-radius: 4px;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease;
 }
 
 .nav-menu a:hover {
@@ -88,76 +113,65 @@ a[href]:hover {
   color: #111;
 }
 
-/* === Hamburger Toggle (Mobile) === */
-.menu-toggle {
-  background: none;
-  border: none;
-  font-size: 1.5em;
-  color: #fff;
-  display: none;
-  cursor: pointer;
-}
-
-/* === Responsive Header (Mobile View) === */
+/* === Mobile View === */
 @media (max-width: 768px) {
   .menu-toggle {
-    display: block;
-    position: absolute;
-    top: center;
-    left: 1em;
+    display: block;  
   }
 
   .nav-menu {
-    display: none !important;
+    display: none;
     flex-direction: column;
     align-items: center;
-    background: none; 
+    background: none;
     width: 100%;
-    padding: 1em 0;
+    margin-bottom: 0.5em;
+    gap: 0.5em; 
   }
 
   .nav-menu.active {
-    display: flex !important;
+    display: flex;
   }
 }
 
+/* === Small Devices === */
 @media (max-width: 500px) {
   .logo {
     font-size: 1.2em;
   }
-  
-  .menu-toggle{
+
+  .menu-toggle {
     font-size: 1.2em;
   }
 }
 
-
-/* === Blog Cards === */ 
-.blog-card {
-  background-color: #222;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  border: 1px solid #444;
-  border-left-width: 4px;
-  border-left-color: #fff; 
-  border-radius: 4px;
+/* === Content Containers === */
+.page-content {
+  padding-top: 100px;
 }
 
-/* === Project Cards === */
+.blog-card,
 .project-card {
   background-color: #222;
   padding: 1rem;
   margin-bottom: 1rem;
   border: 1px solid #444;
-  border-radius: 6px; 
-  border-top-left-radius: 0px;
-  border-bottom-left-radius: 0px;
-  border-left-color:#00ff00;
-  border-left-width: 1px; 
+  border-radius: 6px;
+}
+
+.blog-card {
+  border-left-width: 4px;
+  border-left-color: #fff;
+}
+
+.project-card {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left-color: #00ff00;
+  border-left-width: 1px;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Make project card link fill entire card */
 .project-card-link {
   text-decoration: none;
   color: inherit;
@@ -166,18 +180,12 @@ a[href]:hover {
 
 .project-card-link:hover .project-card {
   background-color: #111;
-  border-color: #111; /* to match the background color */ 
+  border-color: #111;
   box-shadow: 0 0 10px #00ff00;
   border-left: 1px solid #00ff00;
 }
 
-/* Page Offset for Fixed Header */
-.page-content {
-  padding-top: 100px;
-  /* height of sticky header + margin */
-}
-
-/* === Tab styles == */
+/* === Tabs === */
 .tab-container {
   display: flex;
   justify-content: center;
@@ -196,11 +204,7 @@ a[href]:hover {
   transition: background-color 0.2s ease;
 }
 
-.tab-button:hover {
-  background-color: #00ff00;
-  color: #111;
-}
-
+.tab-button:hover,
 .tab-button.active {
   background-color: #00ff00;
   color: #111;
@@ -214,6 +218,7 @@ a[href]:hover {
   display: block;
 }
 
+/* === Expand Boxes === */
 .expand-box {
   margin: 1.5em 0;
 }
@@ -222,8 +227,7 @@ a[href]:hover {
   background-color: #222;
   color: #fff;
   border: 1px solid #fff;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
+  border-radius: 4px 4px 0 0;
   padding: 0.5em 1em;
   cursor: pointer;
   font-weight: bold;
@@ -236,28 +240,25 @@ a[href]:hover {
 }
 
 .expand-content {
-  display: none; /* hidden until active */ 
+  display: none;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s ease;
   background-color: #222;
   padding: 0 1em;
   border: 1px solid #444;
-  border-top-width: 0px;
-  border-left-width: 3px;
-  border-left-color: #fff; 
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
+  border-top: none;
+  border-left: 3px solid #fff;
+  border-radius: 0 0 4px 4px;
 }
 
 .expand-box.active .expand-content {
   display: block;
   max-height: 200px;
-  /* adjust as needed */
   padding: 1em;
 }
 
-/* === Full size switch === */
+/* === Full Width Switch === */
 .full-width-switch {
   width: 100%;
   max-width: 600px;
@@ -273,7 +274,6 @@ a[href]:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: relative;
   background-color: #111;
   border: 2px solid #00ff00;
   border-radius: 50px;
@@ -281,8 +281,9 @@ a[href]:hover {
   cursor: pointer;
   font-weight: bold;
   color: #00ff00;
-  overflow: hidden;
   font-size: 1.1em;
+  position: relative;
+  overflow: hidden;
 }
 
 .label-left,
@@ -292,9 +293,8 @@ a[href]:hover {
   z-index: 2;
   pointer-events: none;
   transition: color 0.3s ease;
-  position: relative;
   white-space: nowrap;
-  color: #111; 
+  color: #111;
 }
 
 .slider-pill {
@@ -303,33 +303,31 @@ a[href]:hover {
   bottom: 4px;
   left: 4px;
   width: calc(50% - 4px);
-  background-color: rgba(0, 255, 0, 0.8); /* update this as needed! */ 
+  background-color: rgba(0, 255, 0, 0.8);
   border-radius: 50px;
   z-index: 1;
   transition: transform 0.3s ease;
   box-shadow: 0 0 8px #00ff00;
 }
 
-/* Move pill right when checked */
 .full-width-switch input:checked + .switch-labels .slider-pill {
   transform: translateX(100%);
 }
 
-/* Switch label contrast */
 .full-width-switch input:checked + .switch-labels .label-left,
 .full-width-switch input:not(:checked) + .switch-labels .label-right {
   color: #fff;
   font-weight: 900;
 }
 
-/* === Media === */ 
+/* === Media === */
 .video-wrapper {
   position: relative;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  padding-bottom: 56.25%;
   height: 0;
   overflow: hidden;
+  margin: 0 auto 1rem;
   max-width: 100%;
-  margin-bottom: 1rem;
 }
 
 .video-wrapper iframe {

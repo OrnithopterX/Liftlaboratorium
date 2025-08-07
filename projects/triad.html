@@ -21,6 +21,7 @@
   <main class="page-content">
     <section id="Triad intro">
       <h1>The Triad Project</h1>
+
       <p>An Experimential VTOL platform</p>
     </section>
 
@@ -36,7 +37,8 @@
     <div id="overview" class="tab-content active-tab">
       <section>
         <h1>Overview</h1>
-        <p>The Triad is an experimental Vertical Take-Off and Landing (VTOL) aircraft. In simple terms, this means it
+        <p>
+          The Triad is an experimental Vertical Take-Off and Landing (VTOL) aircraft. In simple terms, this means it
           can hover like a helicopter and also transition into forward flight like a plane.
           Control is achieved with three thrust-vectoring flaps arranged around a central thrust axis. These flaps
           redirect the thrust to control pitch, roll, and yaw. In forward flight, the Triad uses three symmetrically
@@ -49,17 +51,132 @@
 
         <h2>Flight Demonstration</h2>
         <div class="video-wrapper">
-          <iframe 
-            src="https://www.youtube.com/embed/x-OtTq84EuU"
-            title="Triad Flight Demonstration"
-            frameborder="0"
+          <iframe src="https://www.youtube.com/embed/x-OtTq84EuU" title="Triad Flight Demonstration" frameborder="0"
             allowfullscreen>
           </iframe>
         </div>
 
         <!-- todo: add image to path
         <img class="image-wrapper" src="/images/Liftlaboratorium_logo.png" alt="Test image of the logo">
-      --> 
+      -->
+
+        <h2>Design</h2>
+        <p>
+          The Triad is not a forgiving platform. Still, the system began to work after I learned a few key lessons. One
+          challenge
+          was that I developed everything in parallel—airframe, controls, electronics, software and tuning—without
+          knowing if any
+          individual part was fully functional. Most of the time, I could only tell which parts weren’t behaving as
+          expected; I
+          was never completely sure what was working.
+          The following sections outline the major challenges I encountered and what I learned throughout the project.
+        </p>
+
+        <strong>Design goals</strong>
+        <p>
+          With the Triad, my goal was to build a kinematically efficient VTOL aircraft. I wanted every motor and
+          actuator to
+          contribute meaningfully in both hover and forward flight, avoiding idle components in either mode.
+          The aircraft was designed so that each degree of freedom—pitch, roll, yaw, and linear movement along the
+          thrust
+          axis—would have a corresponding actuator. This reduces the cost and weight of the finished aircraft.
+          I also wanted the Triad to support omni-axis flight around its thrust vector—flying upright, inverted,
+          sideways, or in
+          any orientation in between.
+        </p>
+
+        <strong>Mixing</strong>
+        <p>
+          Control mixing was one of the first challenges to solve. In this configuration, only the central motor
+          responds directly
+          to linear input. All other controls are handled via a custom mixing matrix, which maps flight inputs (pitch,
+          roll, yaw)
+          to actuator outputs. I wrote custom scripts to define and tune these mappings, allowing the Triad to achieve
+          stable
+          hover and controlled transitions.
+          Unlike many other VTOL platforms, like the quad plane, there is no transition state. This means the mixing
+          script does
+          not change in forward flight or hover, only the angle of attack changes to achieve a different flight format.
+        </p>
+
+        <strong>Aircraft layout</strong>
+        <p>
+          Balancing stability, control authority, and simplicity proved especially difficult for a first-time layout.
+          Multiple
+          iterations were required to find a geometry that supported both hover and forward flight without excessive
+          structural
+          complexity.
+        </p>
+
+        <strong>Wings and flaps</strong>
+        <p>
+          Correctly sizing the wings and flaps was essential to building a flyable aircraft. I tested a variety of
+          configurations
+          in simulation and in real-world flight to find a balance between lift, responsiveness, and stability.
+        </p>
+
+        <strong>Vibration Reduction</strong>
+        <p>
+          In-flight vibration was the most persistent issue. As I reduced weight and increased control-loop tuning
+          rates, the
+          airframe became more sensitive to mechanical vibration and feedback-loop instability.
+          By version 3.3, I introduced foam board supports to stiffen the structure. In version 4.0, I redesigned the
+          frame with
+          carbon fiber tubes for increased stiffness and reduced flex.
+          Other improvements included:
+          <li> Reinforcing foamboard wings with embedded carbon rods </li>
+          <li> Replacing flap linkages with a direct-drive system to eliminate mechanical backlash </li>
+          <li> Designing triangular landing gear to reduce ground-induced vibration and prevent yaw I-term buildup
+            before takeoff </li>
+        </p>
+
+
+
+        <strong>Center of prussure for wings</strong>
+        <p>
+          Early versions of the Triad (up to v3.3) failed to maintain heading in forward flight. The aircraft would
+          pitch forward
+          or backward but wouldn’t stay on course.
+          Upon reviewing flight footage, I realized the aircraft was weathervaning—rotating to align with the direction
+          of
+          airflow, either from wind or its own motion. The root issue was that the center of pressure did not align with
+          the
+          center of gravity.
+          To correct this, I modeled one-third of the aircraft (a wing + flap section) in CAD and calculated the center
+          of gravity
+          of the resulting 2D shape. This gave a close approximation of the aircraft’s center of pressure, which I then
+          aligned
+          with the CG along the Z-axis.
+        </p>
+
+        <strong>Possible future improvments</strong>
+        <p>
+          If I were to redesign the Triad, I would keep the core configuration but improve the airframe’s stiffness and
+          efficiency. Here are a few areas of potential improvement:
+          Flap stall reduction
+          The flaps tend to stall during rapid descent. Increasing flap area, reducing overall weight, or even
+          increasing the
+          number of flaps could improve control and stall resistance.
+
+
+          <li>
+            <b>Structural optimization - </b>
+            A fully carbon fiber tube structure would reduce torsional flexing and allow for more aggressive control
+            tuning.
+          </li>
+
+          <li>
+            <b>Vibration mitigation - </b>
+            Continued refinement of the frame could reduce noise and instability from vibration-sensitive PID loops.
+          </li>
+
+          <li>
+            <b>Propeller disk loading - </b>
+            A larger-diameter propeller would reduce disk loading, leading to quieter operation, longer flight times,
+            and a larger
+            flight envelope. Propeller counter-torque could also be reduced with better blade and motor matching.
+          </li>
+        </p>
 
         <!-- added expanding text box -->
         <div class="expand-box">
@@ -79,13 +196,18 @@
         <h2>Update Log</h2>
 
         <div class="blog-card">
-          <h3>First update</h3>
+          <h3>Version 4.2</h3>
           <p> Something interesting here </p>
         </div>
 
         <div class="blog-card">
-          <h3>Second update</h3>
+          <h3>Version 4.1</h3>
           <p> Something even move interesting here </p>
+        </div>
+
+        <div class="blog-card">
+          <h3>Version 3.4</h3>
+          <p> </p>
         </div>
 
       </section>
