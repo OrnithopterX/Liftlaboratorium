@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Lift Laboratorium | Technological projects by Joshua Adcock</title>
+  <title>Lift Laboratorium — UAV, Robotics & Simulation Projects</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
@@ -86,6 +86,7 @@
         if (toggleButton && navMenu) {
           toggleButton.addEventListener('click', () => {
             navMenu.classList.toggle('active');
+            toggleButton.classList.toggle('active'); // animate hamburger → X
           });
         }
       });

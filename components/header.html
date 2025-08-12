@@ -1,6 +1,10 @@
 <header class="top-header">
   <div class="header-container">
-    <button class="menu-toggle">☰</button>
+    <button class="menu-toggle" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
     <div class="logo" onclick="location.href='/'">LIFT LABORATORIUM</div>
   </div>
 
@@ -18,21 +22,22 @@ In place of the header:
 
 In the scripts section: 
 
-    <script>
-        fetch("/components/header.html")
-            .then(res => res.text())
-            .then(html => {
-            document.getElementById("header-placeholder").innerHTML = html;
+  <script>
+    fetch("/components/header.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("header-placeholder").innerHTML = html;
 
-            const toggleButton = document.querySelector('.menu-toggle');
-            const navMenu = document.querySelector('.nav-menu');
+        const toggleButton = document.querySelector('.menu-toggle');
+        const navMenu = document.querySelector('.nav-menu');
 
-            if (toggleButton && navMenu) {
-                toggleButton.addEventListener('click', () => {
-                navMenu.classList.toggle('active');
-                });
-            }
-        });
-    </script>
+        if (toggleButton && navMenu) {
+          toggleButton.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            toggleButton.classList.toggle('active'); // animate hamburger → X
+          });
+        }
+      });
+  </script>
     
 -->

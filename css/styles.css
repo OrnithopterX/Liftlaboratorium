@@ -89,17 +89,51 @@ a[href]:hover {
 
 /* === Menu Toggle === */
 .menu-toggle {
-  display: none;
-  background: none;
-  border: none;
-  font-size: 1.5em;
-  color: var(--color-logo);
+  --icon-size: 1.25em;      /* overall button size (scales with font-size) */
+  --bar-thickness: 0.15em;  /* thickness of each bar */
+  font-size: 1.25rem;       /* change to scale the icon */
+  width: var(--icon-size);
+  height: var(--icon-size);
+  padding: 0;
+  box-sizing: border-box;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  border: 0;
   cursor: pointer;
-  position: absolute;
-  top: 50%;
-  left: 1rem;
-  transform: translateY(-50%);
 }
+
+.menu-toggle span {
+  display: block;
+  width: 100%;
+  height: var(--bar-thickness);
+  background-color: var(--color-logo, #fff);
+  border-radius: 0.1em;
+  transform-origin: center;
+  transition: transform 0.3s ease, opacity 0.25s ease;
+}
+
+/* morph into X */
+.menu-toggle.active span:nth-child(1) {
+  transform: translateY(calc((var(--icon-size) / 2) - (var(--bar-thickness) / 2))) rotate(45deg);
+}
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle.active span:nth-child(3) {
+  transform: translateY(calc(-1 * ((var(--icon-size) / 2) - (var(--bar-thickness) / 2)))) rotate(-45deg);
+}
+
+@media (max-width: 500px) {
+  .menu-toggle {
+    font-size: 1.1rem; 
+    --icon-size: 1.1em;
+    --bar-thickness: 0.12em;
+  }
+}
+
 
 /* === Navigation Menu === */
 .nav-menu {

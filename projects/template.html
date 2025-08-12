@@ -84,6 +84,7 @@
         if (toggleButton && navMenu) {
           toggleButton.addEventListener('click', () => {
             navMenu.classList.toggle('active');
+            toggleButton.classList.toggle('active'); // animate hamburger → X
           });
         }
       });
