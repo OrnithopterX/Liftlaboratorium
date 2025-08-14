@@ -18,80 +18,96 @@
   <link rel="stylesheet" href="/css/styles.css">
 </head>
 
+<!-- Header -->
 <body>
-  <div id="header-placeholder"></div>
+  <header>
+    <nav class="container">
+      <div class="logo">
+        <img src="/images/Liftlaboratorium_logo.png" alt="Brand Logo" class="logo-img">
+        <span class="logo" onclick="location.href='/'">LIFT LABORATORIUM</span>
+      </div>
 
-  <main class="page-content">
-    <section id="intro">
+      <ul class="nav-links">
+        <li><a href="/projects/projects.html">Projects</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+      </ul>
+
+      <!-- Mobile Menu Button -->
+      <button class="menu-toggle" aria-label="Toggle Menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Overlay Menu -->
+  <div class="overlay">
+    <nav class="overlay-menu">
+      <ul>
+        <li><a href="/projects/projects.html">Projects</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+  <!-- End header -->
+
+  <main class="container">
+    <section class="hero">
       <h1>Welcome</h1>
       <p>
         Hello! I’m Joshua Adcock, an Electrical Engineering student with a passion for hands-on learning through
-        complex projects.
-        This site is a living collection of the experiments and systems I’ve designed to explore flight,
-        control, simulation, computer science and
-        anything else I happen to find interest in.
+        complex projects. This site is a living collection of the experiments and systems I’ve designed to explore
+        flight, control, simulation, computer science and anything else I happen to find interest in.
       </p>
       <p>
-        Currently, I am working on getting the site structure the way I like it, this means I am doing a lot of
-        work behind-the-scenes.
-        However, I will soon start publishing and refining the project pages for my scratch-build lidar, the
-        Triad project, the Levo simulator,
-        and the DragonFlight project, with many more to come! If any of this interests you, bookmark this page
-        and come back in a few days.
-        Until then, If you have suggestions for future projects, improvements on existing projects, requests for
-        more information,
-        or would simply like to say hello, feel free to reach me directly through the contact page.
+        Currently, I am working on getting the site structure the way I like it, this means I am doing a lot of work
+        behind-the-scenes. However, I will soon start publishing and refining the project pages for my scratch-build
+        lidar, the Triad project, the Levo simulator, and the DragonFlight project, with many more to come! If any of
+        this interests you, bookmark this page and come back in a few days. Until then, If you have suggestions for
+        future projects, improvements on existing projects, requests for more information, or would simply like to say
+        hello, feel free to reach me directly through the contact page.
       </p>
-      <p>
+      <p> 
         Again, this site is work in progress, thanks for following along as this site continues to improve!
       </p>
-    </section>
-    <section id="projects">
-      <h2>Featured Projects</h2>
 
-      <!-- Default project tab, add more as needed - remember to update the project page! -->
-      <a href="/projects/triad.html" class="project-card-link">
-        <div class="project-card">
-          <h3>Triad UAV</h3>
-          <p> An Omni-axis VTOL aircraft with three wings and flaps </p>
-        </div>
-      </a>
-
-    </section>
-    <section id="about">
-      <h2>About</h2>
-      <p>
-        Lift Laboratorium is home to my personal research projects that are focused on UAV development,
-        experimental aircraft, robotics,
-        autonomous systems, embedded electronics, and simulation software. Projects here highlight engineering,
-        design, software development,
-        and hands-on learning in flight systems and creative technology.
-      </p>
     </section>
   </main>
 
   <footer>
-    <p>© 2025 Lift Laboratorium. Built by Joshua Adcock.</p>
+    <div class="container">
+      <p>© 2025 Liftlaboratorium.com</p>
+    </div>
   </footer>
-
-  <script>
-    fetch("/components/header.html")
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById("header-placeholder").innerHTML = html;
-
-        const toggleButton = document.querySelector('.menu-toggle');
-        const navMenu = document.querySelector('.nav-menu');
-
-        if (toggleButton && navMenu) {
-          toggleButton.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            toggleButton.classList.toggle('active'); // animate hamburger → X
-          });
-        }
-      });
-  </script>
-
 </body>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const menuToggle = document.querySelector(".menu-toggle");
+    const overlay = document.querySelector(".overlay");
+
+    menuToggle.addEventListener("click", () => {
+      menuToggle.classList.toggle("active");
+      overlay.classList.toggle("active");
+    });
+
+    // Close menu when clicking a link
+    document.querySelectorAll(".overlay-menu a").forEach(link => {
+      link.addEventListener("click", () => {
+        menuToggle.classList.remove("active");
+        overlay.classList.remove("active");
+      });
+    });
+
+    // Close when clicking outside menu
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) {
+        menuToggle.classList.remove("active");
+        overlay.classList.remove("active");
+      }
+    });
+  });
+</script>
 
 </html>

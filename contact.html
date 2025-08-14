@@ -15,46 +15,87 @@
   <link rel="stylesheet" href="/css/styles.css">
 </head>
 
+<!-- Header -->
 <body>
-  <div id="header-placeholder"></div>
+  <header>
+    <nav class="container">
+      <div class="logo">
+        <img src="/images/Liftlaboratorium_logo.png" alt="Brand Logo" class="logo-img">
+        <span class="logo" onclick="location.href='/'">LIFT LABORATORIUM</span>
+      </div>
 
-  <main class="page-content">
-    <section id="contact information">
+      <ul class="nav-links">
+        <li><a href="/projects/projects.html">Projects</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+      </ul>
+
+      <!-- Mobile Menu Button -->
+      <button class="menu-toggle" aria-label="Toggle Menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Overlay Menu -->
+  <div class="overlay">
+    <nav class="overlay-menu">
+      <ul>
+        <li><a href="/projects/projects.html">Projects</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+<!-- End header -->
+
+  <main class="container">
+    <section class="hero">
       <h1>Contact</h1>
       <p>Let’s talk ideas, collaboration, or questions!</p>
       <p>Feel free to reach me directly at:</p>
       <a href="mailto:liftlaboratorium@gmail.com">liftlaboratorium@gmail.com</a>
 
       <p>Or find me here:</p>
-      <ul>
         <li><a href="https://github.com/OrnithopterX" target="_blank">GitHub</a></li>
         <li><a href="https://www.linkedin.com/in/joshua-adcock-82a22326b/" target="_blank">LinkedIn</a></li>
-      </ul>
     </section>
 
   </main>
 
   <footer>
-    <p>© 2025 Lift Laboratorium</p>
+    <div class="container">
+      <p>© 2025 Liftlaboratorium.com</p>
+    </div>
   </footer>
-
-  <script>
-    fetch("/components/header.html")
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById("header-placeholder").innerHTML = html;
-
-        const toggleButton = document.querySelector('.menu-toggle');
-        const navMenu = document.querySelector('.nav-menu');
-
-        if (toggleButton && navMenu) {
-          toggleButton.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            toggleButton.classList.toggle('active'); // animate hamburger → X
-          });
-        }
-      });
-  </script>
-
 </body>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const menuToggle = document.querySelector(".menu-toggle");
+    const overlay = document.querySelector(".overlay");
+
+    menuToggle.addEventListener("click", () => {
+      menuToggle.classList.toggle("active");
+      overlay.classList.toggle("active");
+    });
+
+    // Close menu when clicking a link
+    document.querySelectorAll(".overlay-menu a").forEach(link => {
+      link.addEventListener("click", () => {
+        menuToggle.classList.remove("active");
+        overlay.classList.remove("active");
+      });
+    });
+
+    // Close when clicking outside menu
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) {
+        menuToggle.classList.remove("active");
+        overlay.classList.remove("active");
+      }
+    });
+  });
+</script>
+
 </html>

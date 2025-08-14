@@ -15,54 +15,128 @@
   <link rel="stylesheet" href="../css/styles.css">
 </head>
 
+<!-- Header -->
+
 <body>
-  <div id="header-placeholder"></div>
-  
-  <main class="page-content">
+  <header>
+    <nav class="container">
+      <div class="logo">
+        <img src="/images/Liftlaboratorium_logo.png" alt="Brand Logo" class="logo-img">
+        <span class="logo" onclick="location.href='/'">LIFT LABORATORIUM</span>
+      </div>
 
-    <section id="Projects">
+      <ul class="nav-links">
+        <li><a href="/projects/projects.html">Projects</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+      </ul>
+
+      <!-- Mobile Menu Button -->
+      <button class="menu-toggle" aria-label="Toggle Menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Overlay Menu -->
+  <div class="overlay">
+    <nav class="overlay-menu">
+      <ul>
+        <li><a href="/projects/projects.html">Projects</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+  <!-- End header -->
+
+  <!-- Projects -->
+  <main class="container">
+    <section class="hero">
       <h1>Projects</h1>
-      <p>This is the home of all my projects - in one place! </p>
+      <p>Here you can find all my projects</p>
+    </section>
 
-      <!-- Default project tab, add more as needed -->
-      <a href="/projects/triad.html" class="project-card-link">
-        <div class="project-card">
-          <h3>Triad UAV</h3>
-          <p> An Omni-axis VTOL aircraft with three wings and flaps </p>
-        </div>
-      </a>
-      
-      <a href="../projects/template.html" class="project-card-link">
-        <div class="project-card">
-          <h3>Default Project</h3>
-          <p>-- Text discription here -- </p>
-        </div>
-      </a>
+    <section class="projects container">
+
+      <!-- Tabs -->
+      <div class="tabs">
+        <button class="tab active" data-tab="all">All</button>
+        <button class="tab" data-tab="UAV">UAV</button>
+        <button class="tab" data-tab="Design">Design</button>
+        <button class="tab" data-tab="Software">Software</button>
+      </div>
+
+      <!-- Project grid -->
+      <div class="project-grid">
+        <a href="../projects/triad.html" class="project-card" data-category="UAV">Triad</a>
+        <a href="../projects/template.html" class="project-card" data-category="UAV">DragonFlight</a>
+        <a href="../projects/template.html" class="project-card" data-category="Design">Levo Simulator</a>
+        <a href="../projects/template.html" class="project-card" data-category="Software">Sudoku Slover</a>
+      </div>
     </section>
 
   </main>
 
   <footer>
-    <p>© 2025 Lift Laboratorium</p>
+    <div class="container">
+      <p>© 2025 Liftlaboratorium.com</p>
+    </div>
   </footer>
-
-  <script>
-    fetch("/components/header.html")
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById("header-placeholder").innerHTML = html;
-
-        const toggleButton = document.querySelector('.menu-toggle');
-        const navMenu = document.querySelector('.nav-menu');
-
-        if (toggleButton && navMenu) {
-          toggleButton.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            toggleButton.classList.toggle('active'); // animate hamburger → X
-          });
-        }
-      });
-  </script>
-
 </body>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const menuToggle = document.querySelector(".menu-toggle");
+    const overlay = document.querySelector(".overlay");
+
+    menuToggle.addEventListener("click", () => {
+      menuToggle.classList.toggle("active");
+      overlay.classList.toggle("active");
+    });
+
+    // Close menu when clicking a link
+    document.querySelectorAll(".overlay-menu a").forEach(link => {
+      link.addEventListener("click", () => {
+        menuToggle.classList.remove("active");
+        overlay.classList.remove("active");
+      });
+    });
+
+    // Close when clicking outside menu
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) {
+        menuToggle.classList.remove("active");
+        overlay.classList.remove("active");
+      }
+    });
+  });
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const tabs = document.querySelectorAll(".tab");
+    const projects = document.querySelectorAll(".project-card");
+
+    tabs.forEach(tab => {
+      tab.addEventListener("click", () => {
+        // Set active tab
+        tabs.forEach(t => t.classList.remove("active"));
+        tab.classList.add("active");
+
+        const category = tab.getAttribute("data-tab");
+
+        // Filter projects
+        projects.forEach(project => {
+          if (category === "all" || project.dataset.category === category) {
+            project.style.display = "block";
+          } else {
+            project.style.display = "none";
+          }
+        });
+      });
+    });
+  });
+</script>
+
 </html>
