@@ -16,13 +16,12 @@
 </head>
 
 <!-- Header -->
-
 <body>
   <header>
     <nav class="container">
-      <div class="logo">
+      <div class="logo" onclick="location.href='/'">
         <img src="/images/Liftlaboratorium_logo.png" alt="Brand Logo" class="logo-img">
-        <span class="logo" onclick="location.href='/'">LIFT LABORATORIUM</span>
+        <span>LIFT LABORATORIUM</span>
       </div>
 
       <ul class="nav-links">
@@ -82,11 +81,15 @@
           See below for a flight demonstration.
         </p>
 
-        <h2>Flight Demonstration</h2>
-        <div class="video-wrapper">
-          <iframe src="https://www.youtube.com/embed/x-OtTq84EuU" title="Triad Flight Demonstration" frameborder="0"
-            allowfullscreen>
-          </iframe>
+        <div class="expand-box">
+          <button class="expand-toggle" onclick="toggleExpand(this)">More Info ▾</button>
+          <div class="expand-content">
+            <h2>Flight Demonstration</h2>
+              <div class="video-wrapper">
+              <iframe src="https://www.youtube.com/embed/x-OtTq84EuU" title="Triad Flight Demonstration" frameborder="0"
+                allowfullscreen>
+              </iframe>
+          </div>
         </div>
 
         <!-- todo: add image to path
