@@ -143,19 +143,6 @@
   </script>
 
   <script>
-    function showTab(tabId) {
-      const tabs = document.querySelectorAll('.tab-content');
-      const buttons = document.querySelectorAll('.tab-button');
-
-      tabs.forEach(tab => tab.classList.remove('active-tab'));
-      buttons.forEach(btn => btn.classList.remove('active'));
-
-      document.getElementById(tabId).classList.add('active-tab');
-      event.target.classList.add('active');
-    }
-  </script>
-
-  <script>
     function toggleExpand(button) {
       const box = button.parentElement;
       box.classList.toggle("active");

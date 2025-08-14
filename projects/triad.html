@@ -16,6 +16,7 @@
 </head>
 
 <!-- Header -->
+
 <body>
   <header>
     <nav class="container">
@@ -81,15 +82,11 @@
           See below for a flight demonstration.
         </p>
 
-        <div class="expand-box">
-          <button class="expand-toggle" onclick="toggleExpand(this)">More Info ▾</button>
-          <div class="expand-content">
-            <h2>Flight Demonstration</h2>
-              <div class="video-wrapper">
-              <iframe src="https://www.youtube.com/embed/x-OtTq84EuU" title="Triad Flight Demonstration" frameborder="0"
-                allowfullscreen>
-              </iframe>
-          </div>
+        <h2>Flight Demonstration</h2>
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/x-OtTq84EuU" title="Triad Flight Demonstration" frameborder="0"
+            allowfullscreen>
+          </iframe>
         </div>
 
         <!-- todo: add image to path
@@ -268,19 +265,6 @@
       // Run once on load
       toggleTabs();
     });
-  </script>
-
-  <script>
-    function showTab(tabId) {
-      const tabs = document.querySelectorAll('.tab-content');
-      const buttons = document.querySelectorAll('.tab-button');
-
-      tabs.forEach(tab => tab.classList.remove('active-tab'));
-      buttons.forEach(btn => btn.classList.remove('active'));
-
-      document.getElementById(tabId).classList.add('active-tab');
-      event.target.classList.add('active');
-    }
   </script>
 
   <script>

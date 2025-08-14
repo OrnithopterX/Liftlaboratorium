@@ -16,6 +16,7 @@
 </head>
 
 <!-- Header -->
+
 <body>
   <header>
     <nav class="container">
@@ -58,6 +59,17 @@
 
     <section class="projects container">
 
+      <!-- Controls -->
+      <div class="project-controls">
+        <input type="text" id="search" placeholder="Search projects...">
+        <select id="sort">
+          <option value="update-desc">Last Updated (Newest)</option>
+          <option value="update-asc">Last Updated (Oldest)</option>
+          <option value="start-desc">Start Date (Newest)</option>
+          <option value="start-asc">Start Date (Oldest)</option>
+        </select>
+      </div>
+
       <!-- Tabs -->
       <div class="tabs">
         <button class="tab active" data-tab="all">All</button>
@@ -66,12 +78,26 @@
         <button class="tab" data-tab="Software">Software</button>
       </div>
 
-      <!-- Project grid -->
+      <!-- Project grid --> <!-- Todo: fill out project start dates -->
       <div class="project-grid">
-        <a href="../projects/triad.html" class="project-card" data-category="UAV">Triad</a>
-        <a href="../projects/template.html" class="project-card" data-category="UAV">DragonFlight</a>
-        <a href="../projects/template.html" class="project-card" data-category="Design">Levo Simulator</a>
-        <a href="../projects/template.html" class="project-card" data-category="Software">Sudoku Slover</a>
+        <a href="../projects/triad.html" class="project-card" data-category="UAV" data-tags="quadcopter, experimental"
+          data-start="2024-05-01" data-update="2025-08-14">
+          <h3 class="project-title">Triad</h3>
+          <p class="project-blurb">An experimental UAV with unconventional control surfaces.</p>
+        </a>
+
+        <a href="../projects/template.html" class="project-card" data-category="Design" data-tags="simulator, software"
+          data-start="2024-06-10" data-update="2025-07-01">
+          <h3 class="project-title">Levo Simulator</h3>
+          <p class="project-blurb">A fast prototyping tool for unconventional aircraft designs.</p>
+        </a>
+
+        <a href="../projects/template.html" class="project-card" data-category="Design" data-tags="solver, experimental"
+          data-start="2020-05-10" data-update="2025-02-12">
+          <h3 class="project-title">Soduku slover</h3>
+          <p class="project-blurb">A python slover for soduku puzzles.</p>
+        </a>
+
       </div>
     </section>
 
@@ -114,27 +140,65 @@
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
+    const projectsContainer = document.querySelector(".project-grid");
+    const projects = Array.from(projectsContainer.children);
     const tabs = document.querySelectorAll(".tab");
-    const projects = document.querySelectorAll(".project-card");
+    const searchInput = document.getElementById("search");
+    const sortSelect = document.getElementById("sort");
 
+    let activeCategory = "all";
+    let searchTerm = "";
+    let sortBy = "update-desc";
+
+    function renderProjects() {
+      let filtered = projects.filter(project => {
+        const tags = project.dataset.tags.toLowerCase().split(",").map(t => t.trim());
+        const categoryMatch = (activeCategory === "all" ||
+          project.dataset.category.toLowerCase() === activeCategory ||
+          tags.includes(activeCategory));
+        const searchMatch = (project.querySelector(".project-title").textContent.toLowerCase() +
+          project.querySelector(".project-blurb").textContent.toLowerCase() +
+          project.dataset.tags.toLowerCase()).includes(searchTerm);
+        return categoryMatch && searchMatch;
+      });
+
+      // Sorting
+      filtered.sort((a, b) => {
+        const [field, order] = sortBy.split("-");
+        const dateA = new Date(a.dataset[field]);
+        const dateB = new Date(b.dataset[field]);
+        return order === "asc" ? dateA - dateB : dateB - dateA;
+      });
+
+      // Render
+      projectsContainer.innerHTML = "";
+      filtered.forEach(project => projectsContainer.appendChild(project));
+    }
+
+    // Tab click
     tabs.forEach(tab => {
       tab.addEventListener("click", () => {
-        // Set active tab
         tabs.forEach(t => t.classList.remove("active"));
         tab.classList.add("active");
-
-        const category = tab.getAttribute("data-tab");
-
-        // Filter projects
-        projects.forEach(project => {
-          if (category === "all" || project.dataset.category === category) {
-            project.style.display = "block";
-          } else {
-            project.style.display = "none";
-          }
-        });
+        activeCategory = tab.dataset.tab.toLowerCase();
+        renderProjects();
       });
     });
+
+    // Search
+    searchInput.addEventListener("input", (e) => {
+      searchTerm = e.target.value.toLowerCase();
+      renderProjects();
+    });
+
+    // Sort
+    sortSelect.addEventListener("change", (e) => {
+      sortBy = e.target.value;
+      renderProjects();
+    });
+
+    // Initial render
+    renderProjects();
   });
 </script>
 
