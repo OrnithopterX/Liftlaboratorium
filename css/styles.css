@@ -94,6 +94,12 @@ nav.container {
   margin-right: 0.5rem;
 }
 
+.logo:hover {
+  cursor: pointer;
+  color: var(--accent);
+  transition: 0.3s;
+}
+
 /* Desktop links */
 .nav-links {
   display: flex;
