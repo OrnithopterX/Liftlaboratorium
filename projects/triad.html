@@ -154,8 +154,7 @@
           rates, the
           airframe became more sensitive to mechanical vibration and feedback-loop instability.
           By version 3.3, I introduced foam board supports to stiffen the structure. In version 4.0, I redesigned the
-          frame with
-          carbon fiber tubes for increased stiffness and reduced flex.
+          frame with carbon fiber tubes for increased stiffness and reduced flex.
           Other improvements included:
           <li> Reinforcing foamboard wings with embedded carbon rods </li>
           <li> Replacing flap linkages with a direct-drive system to eliminate mechanical backlash </li>
@@ -171,10 +170,8 @@
           pitch forward
           or backward but wouldn’t stay on course.
           Upon reviewing flight footage, I realized the aircraft was weathervaning—rotating to align with the direction
-          of
-          airflow, either from wind or its own motion. The root issue was that the center of pressure did not align with
-          the
-          center of gravity.
+          of airflow, either from wind or its own motion. The root issue was that the center of pressure did not align with
+          the center of gravity.
           To correct this, I modeled one-third of the aircraft (a wing + flap section) in CAD and calculated the center
           of gravity
           of the resulting 2D shape. This gave a close approximation of the aircraft’s center of pressure, which I then
@@ -186,11 +183,12 @@
         <p>
           If I were to redesign the Triad, I would keep the core configuration but improve the airframe’s stiffness and
           efficiency. Here are a few areas of potential improvement:
-          Flap stall reduction
-          The flaps tend to stall during rapid descent. Increasing flap area, reducing overall weight, or even
-          increasing the
-          number of flaps could improve control and stall resistance.
-
+          
+          <li>
+            <b>Flap stall reduction - </b>
+            The flaps tend to stall during rapid descent. Increasing flap area, reducing overall weight, or even
+            increasing the number of flaps could improve control and stall resistance.
+          </li>
 
           <li>
             <b>Structural optimization - </b>
@@ -227,18 +225,128 @@
         <h2>Update Log</h2>
 
         <div class="blog-card">
+          <h3>Version 4.3</h3>
+          <p> 
+            The latest version of the Traid project. In order to reduce the propeller disk loading, I removed a lot of weight and used a smaller 6 cell li-po battery. 
+            This improved flight proformance, but there was still a lot to be desired. 
+          </p>
+        </div>
+
+        <div class="blog-card">
           <h3>Version 4.2</h3>
-          <p> Something interesting here </p>
+          <p> Fitted with larger flaps this version flew much better than the last</p>
         </div>
 
         <div class="blog-card">
           <h3>Version 4.1</h3>
-          <p> Something even more interesting here </p>
+          <p> 
+            Version 4.1 was the first airframe of the 4th of the Triad series. To start things off I didn't like the foamboard structure of the past airframe’s
+            - they proved to dent and fold in a "hard, unplanned landing" far too well. Also the landing gear and servo linkages produced vibrations in flight and 
+            contributed to the I-term spoolup issue when landed. To fix these issues, I deleted the enitre cad workspace from the past design to force myself to think 
+            outside of the box on this design and use everything I have learned on the past versions.(I have a habit of shareing parts when I can, so the motor mount 
+            on version 3.4 was unchanged from version 1.0! I actually used the same printed part!) Starting off, I designed a carbon fiber frame to attach the flaps 
+            and wings to, and attached the flaps directly to the servos. I also updated the landing gear to include two carbon rods that attach at the tip - this practially 
+            constrains the possible deformation to only the z-axis, which is helpful for softer landings. The design worked almost perfectly, however, there wasn't a lot of 
+            yaw athority. 
+          </p>
+        </div>
+
+        <div class="blog-card">
+          <h3>Version 4.0</h3>
+          <p>
+            Never built. This version looked a lot like version 3.4 but with a GPS mount, triangle landing gear, and an FPV camera! 
+            It was never built because I rethought the flap system to remove the linkages entirely - 
+            and this idea moved into every other part of the design until I deleted the CAD document and started from fresh! 
+          </p>
         </div>
 
         <div class="blog-card">
           <h3>Version 3.4</h3>
-          <p> </p>
+          <p>
+            Watching video of high alpha flights I conducted on version 3.3, I made an important discovery: the airframe was "weathervane-ing" - 
+            this occurs when the airframe moves towards the wind like a weathervane! After some thought, I found the solution, add some area above the center of 
+            gravity to balance the twisting moments out. Version 3.3 was out of balance by a factor of over 12 to 1 - there was 12 times the force acting on the 
+            lower half of the airframe, rotating towards the wind! Version 3.4 was out of balance by a factor of 2.048/1! That was the trick, the aircraft flew much 
+            better after the wing area was changed! 
+          </p>
+        </div>
+
+        <div class="blog-card">
+          <h3>Version 3.3</h3>
+          <p>
+            Building off of the past version, I needed to reduce the vibrations in the airframe. I added some foam board panels to brace the wings - 
+            this worked, but I soon discovered the vibrations were also propagating from the landing gear.
+          </p>
+        </div>
+
+        <div class="blog-card">
+          <h3>Version 3.2</h3>
+          <p>
+            This version had one thing in mind for its design: vibration reduction! Carbon fiber tubes were added to the wings to stiffen things up,
+            and nylon string was routed across the wings in an attempt to brace deflections - nothing worked. 
+          </p>
+        </div>
+
+        <div class="blog-card">
+          <h3>Version 3.1</h3>
+          <p>
+            The first real version of the 3 series, it flew, but the flights were constrained to tethered runs. A lot of tuning made to system flyable,
+            but it was very far from self-sustaining. 
+            Also, vibrations make to airframe nearly untunable, which delayed any hopes of an untethered flight any time soon.
+          </p>
+        </div>
+
+        <div class="blog-card">
+          <h3>Version 3.0</h3>
+          <p> 
+            Only existed in CAD, I bet you can see a pattern going on here. 
+          </p>
+        </div>
+
+        <div class="blog-card">
+          <h3>Version 2.2</h3>
+          <p> 
+              At the loss of V2.1, I replaced the servo and cut some of the foam out to allow a larger propeller. 
+              It flew slightly better than V2.1, but not by much at all, in fact, even V1.2 flew better! 
+          </p>
+        </div>
+
+        <div class="blog-card">
+          <h3>Version 2.1</h3>
+          <p> 
+            This version did fly, but only once! Upon the maiden, the aircraft was largely uncontrollably,
+            I disarmed and the Triad crashed into the ground, destroying one of the wing servos. 
+          </p>
+        </div>
+
+        <div class="blog-card">
+          <h3>Version 2.0</h3>
+          <p>
+            Yet again, this version only existed in CAD, the reason was the flap hinges were too hard to build in reality. 
+          </p>
+        </div>
+
+        <div class="blog-card">
+          <h3>Version 1.2</h3>
+          <p> 
+            The same day V1.1 was build, I cut some material from the airframe to allow for larger flaps, something that was desperately needed.
+            The results were largely improved. 
+          </p>
+        </div>
+
+        <div class="blog-card">
+          <h3>Version 1.1</h3>
+          <p> 
+            This version was built and flew, to a degree. There were a massive number of issues, from mixing misassignment to tiny flaps, 
+            this version had it all! It barely flew at all, but it was the glimmer of hope I needed. The project was in motion now! 
+          </p>
+        </div>
+
+        <div class="blog-card">
+          <h3>Version 1.0</h3>
+          <p> 
+            Triad V1.0 (at the time known as the triwing) only existed in CAD. The airframe was too difficult to manufacture, so the version was reworked.
+          </p>
         </div>
 
       </section>
