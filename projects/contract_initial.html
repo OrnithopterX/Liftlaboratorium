@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Initial Contract | Lift Laboratorium</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The Honors Contract template">
+    <meta name="author" content="Joshua Adcock">
+    <meta property="og:image" content="../images/Liftlaboratorium_logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicons/favicon-16x16.png">
+    <link rel="manifest" href="../favicons/site.webmanifest">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <!-- LaTeX Math funcitions via MathJax.org -->
+
+</head>
+
+<!-- Header -->
+
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo" onclick="location.href='/'">
+                <img src="/images/Liftlaboratorium_logo.png" alt="Brand Logo" class="logo-img">
+                <span>LIFT LABORATORIUM</span>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/projects/projects.html">Projects</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+            </ul>
+
+            <!-- Mobile Menu Button -->
+            <button class="menu-toggle" aria-label="Toggle Menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Overlay Menu -->
+    <div class="overlay">
+        <nav class="overlay-menu">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/projects/projects.html">Projects</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+    <!-- End header -->
+
+
+    <main class="container">
+        <section class="hero">
+            <h1>Introduction to the Quadratic Equation</h1>
+
+            <p>
+                When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
+                \[x = {-b \pm \sqrt{b^2-4ac} \over 2a}.\]
+            </p>
+            <p> 
+                \[\sqrt{-16}  =  i \sqrt{16}  =  4i \]
+            </p>
+        </section>
+
+
+
+
+        <div class="full-width-switch">
+            <input type="checkbox" id="viewToggle">
+            <label for="viewToggle" class="switch-labels">
+                <span class="slider-pill"></span>
+                <span class="label-left">Overview</span>
+                <span class="label-right">Timeline</span>
+            </label>
+        </div>
+
+        <div id="overview" class="tab-content active-tab">
+            <section>
+                <h1>Overview</h1>
+                <p>
+                    Text goes here.
+                </p>
+
+                <!--
+
+        <h2>Video</h2>
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/x-OtTq84EuU" title="Triad Flight Demonstration" frameborder="0"
+            allowfullscreen>
+          </iframe>
+        </div>
+
+        todo: add image to path
+        <img class="image-wrapper" src="/images/Liftlaboratorium_logo.png" alt="Test image of the logo">
+        -->
+
+                <!-- added expanding text box -->
+                <div class="expand-box">
+                    <button class="expand-toggle" onclick="toggleExpand(this)">More Info ▾</button>
+                    <div class="expand-content">
+                        <p>This section contains additional information about the project. Click again to collapse it.
+                        </p>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+
+        <div id="blog" class="tab-content">
+            <section>
+                <h2>Update Log</h2>
+
+                <div class="blog-card">
+                    <h3>Version 3</h3>
+                    <p> Something interesting here </p>
+                </div>
+
+                <div class="blog-card">
+                    <h3>Version 2</h3>
+                    <p> Something even more interesting here </p>
+                </div>
+
+                <div class="blog-card">
+                    <h3>Version 1</h3>
+                    <p> Update </p>
+                </div>
+
+            </section>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>© 2025 Lift Laboratorium</p>
+    </footer>
+
+    <script>
+        function toggleTabs() {
+            const isTimeline = document.getElementById("viewToggle").checked;
+
+            document.getElementById("overview").classList.toggle("active-tab", !isTimeline);
+            document.getElementById("blog").classList.toggle("active-tab", isTimeline);
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const toggle = document.getElementById("viewToggle");
+            toggle.addEventListener("change", toggleTabs);
+
+            // Run once on load
+            toggleTabs();
+        });
+    </script>
+
+    <script>
+        function toggleExpand(button) {
+            const box = button.parentElement;
+            box.classList.toggle("active");
+
+            // Change arrow icon
+            button.innerHTML = box.classList.contains("active")
+                ? "Less Info ▴"
+                : "More Info ▾";
+        }
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const menuToggle = document.querySelector(".menu-toggle");
+            const overlay = document.querySelector(".overlay");
+
+            menuToggle.addEventListener("click", () => {
+                menuToggle.classList.toggle("active");
+                overlay.classList.toggle("active");
+            });
+
+            // Close menu when clicking a link
+            document.querySelectorAll(".overlay-menu a").forEach(link => {
+                link.addEventListener("click", () => {
+                    menuToggle.classList.remove("active");
+                    overlay.classList.remove("active");
+                });
+            });
+
+            // Close when clicking outside menu
+            overlay.addEventListener("click", (e) => {
+                if (e.target === overlay) {
+                    menuToggle.classList.remove("active");
+                    overlay.classList.remove("active");
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
