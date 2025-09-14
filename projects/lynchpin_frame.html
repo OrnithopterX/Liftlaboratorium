@@ -2,10 +2,10 @@
 <html lang="en">
 
 <head>
-  <title>Project name | Lift Laboratorium</title>
+  <title>Lynchpin UAV | Lift Laboratorium</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="An omni-axis VTOL aircraft with three wings and flaps">
+  <meta name="description" content="Lynchpin">
   <meta name="author" content="Joshua Adcock">
   <meta property="og:image" content="../images/Liftlaboratorium_logo.png">
   <link rel="apple-touch-icon" sizes="180x180" href="../favicons/apple-touch-icon.png">
@@ -13,6 +13,10 @@
   <link rel="icon" type="image/png" sizes="16x16" href="../favicons/favicon-16x16.png">
   <link rel="manifest" href="../favicons/site.webmanifest">
   <link rel="stylesheet" href="../css/styles.css">
+  <!-- LaTeX Math funcitions via MathJax.org -->
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+  <div id="MathJax_Message" style="display: none;"></div>
+    
 </head>
 
 <!-- Header -->
@@ -54,9 +58,9 @@
 
   <main class="container">
     <section class="intro">
-      <h1>Project name</h1>
+      <h1>The Lynchpin UAV research project</h1>
 
-      <p>Description</p>
+      <p>A study in the lynchpin frame design</p>
     </section>
 
     <div class="full-width-switch">
@@ -72,21 +76,30 @@
       <section>
         <h1>Overview</h1>
         <p>
-          Text goes here.
+          This is just a random though dump as I dig into the design and math of the lynchpin configuration. 
         </p>
 
-        <!--
+        <h1> Design </h1>
+        <p> 
+            To start, the Lynchpin frame was designed Terrence Howard as a novel airframe with the abillty to sustain flight in all 6 axes. 
+            His Website can be found here: https://www.terryslynchpins.com/pages
+        </p>
+        <p>
+            The Lynchpin frame is built around the collapsed tetrahedron. Let’s dive into the design! 
 
-        <h2>Video</h2>
-        <div class="video-wrapper">
-          <iframe src="https://www.youtube.com/embed/x-OtTq84EuU" title="Triad Flight Demonstration" frameborder="0"
-            allowfullscreen>
-          </iframe>
-        </div>
+            If we take a Tetrahedron with a vertex radius of 1 unit, the resulting collapsed triangle has the sides lengths of 
 
-        todo: add image to path
-        <img class="image-wrapper" src="/images/Liftlaboratorium_logo.png" alt="Test image of the logo">
-        -->
+            \[x, \; x \sqrt{10}, \; \frac{1}{3}  x\]
+
+            with \(x\) being both the radius of the sphere and the hypotenuse. 
+
+            More math here…
+
+            However, if we look at the lines connecting the motors to the origin, things look a lot more simple. 
+            Each of the six lines are tangent to each other, so we can simplify the design to just \(x \pm , y \pm , z \pm \) vectors. 
+            Notice the motors are positioned tangentially to the inverted pair. Now the Kinamatic model becomes much more simple. 
+        </p>
+
 
         <!-- added expanding text box -->
         <div class="expand-box">
