@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Project name | Lift Laboratorium</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="An omni-axis VTOL aircraft with three wings and flaps">
+    <meta name="author" content="Joshua Adcock">
+    <meta property="og:image" content="../images/Liftlaboratorium_logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicons/favicon-16x16.png">
+    <link rel="manifest" href="../favicons/site.webmanifest">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<!-- Header -->
+
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo" onclick="location.href='/'">
+                <img src="/images/Liftlaboratorium_logo.png" alt="Brand Logo" class="logo-img">
+                <span>LIFT LABORATORIUM</span>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/projects/projects.html">Projects</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+            </ul>
+
+            <!-- Mobile Menu Button -->
+            <button class="menu-toggle" aria-label="Toggle Menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Overlay Menu -->
+    <div class="overlay">
+        <nav class="overlay-menu">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/projects/projects.html">Projects</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+    <!-- End header -->
+
+
+    <main class="container">
+        <section class="intro">
+            <h1>Ornithopter Crank Designer</h1>
+
+            <p>A calculator to minimize flapping asymmetry</p>
+        </section>
+
+        <label for="crankType">Select Crank Type:</label>
+        <select id="crankType">
+            <option value="staggered">Staggered Crank</option>
+            <option value="perfect">Perfect Staggered Crank</option>
+            <option value="dual">Dual Crank</option>
+            <option value="insideout">Inside-Out Staggered Crank</option>
+        </select>
+
+        <div id="inputs"></div>
+        <div id="results"></div>
+
+    <script>
+            const inputsDiv = document.getElementById("inputs");
+            const resultsDiv = document.getElementById("results");
+            const crankType = document.getElementById("crankType");
+
+            const inputConfigs = {
+                staggered: ["Dihedral", "Anhedral", "H", "W", "D"],
+                perfect: ["Flap_angle", "H", "W", "D"],
+                dual: ["Dihedral", "Anhedral", "H", "W", "D", "D2"],
+                insideout: ["Dihedral", "Anhedral", "H", "W", "D"]
+            };
+
+            function createInputs() {
+                inputsDiv.innerHTML = "";
+                const keys = inputConfigs[crankType.value];
+                keys.forEach(k => {
+                    const div = document.createElement("div");
+                    div.className = "control";
+                    div.innerHTML = `
+                    <label>${k}:</label>
+                    <input type="range" min="0" max="180" step="0.1" value="10" id="slider_${k}" 
+                        oninput="document.getElementById('num_${k}').value=this.value; calculate()">
+                    <input type="number" step="0.1" value="10" id="num_${k}" 
+                        oninput="document.getElementById('slider_${k}').value=this.value; calculate()">
+                    `;
+                    inputsDiv.appendChild(div);
+                });
+            }
+
+            crankType.addEventListener("change", createInputs);
+            createInputs(); 
+            calculate(); // added 
+
+            function val(id) {
+                return parseFloat(document.getElementById("num_" + id).value);
+            }
+
+            function calculate() {
+                let type = crankType.value;
+                let out = "<h3>Results:</h3>";
+                let Crank_radii, Linkage_length, Crank_offset, Dihedral_output, Anhedral_output;
+
+                if (type === "staggered") {
+                    let Dihedral = val("Dihedral"), Anhedral = val("Anhedral"),
+                        H = val("H"), W = val("W"), D = val("D");
+                    let H2 = Math.sin(Dihedral * Math.PI / 180) * W;
+                    let H3 = Math.sin(Anhedral * Math.PI / 180) * W;
+                    let HA = H + H2, HB = H - H3;
+                    let Y1 = Math.cos(Dihedral * Math.PI / 180) * W;
+                    let Y2 = Math.cos(Anhedral * Math.PI / 180) * W;
+                    let Z1 = Math.sqrt(((Y1 + D) ** 2) + (HA ** 2));
+                    let Z2 = Math.sqrt(((Y2 + D) ** 2) + (HB ** 2));
+                    let AxD = Math.atan((Y1 + D) / HA) * 2;
+                    let AxU = Math.atan((Y2 + D) / HB) * 2;
+
+                    Crank_radii = (Z1 - Z2) / 2;
+                    Linkage_length = Z1 - Crank_radii;
+                    Crank_offset = (AxD + AxU) / 2;
+
+                } else if (type === "perfect") {
+                    let Flap = val("Flap_angle"), H = val("H"), W = val("W"), D = val("D");
+                    let Hs = Math.sqrt(D ** 2 + H ** 2);
+                    let Aa = Flap / 2;
+                    let Wr = Math.cos(Aa * Math.PI / 180) * W;
+                    let Axt = Math.atan(D / H) * 180 / Math.PI + (90 - Math.acos(Wr / Hs) * 180 / Math.PI);
+
+                    Crank_radii = Math.sin(Aa * Math.PI / 180) * W;
+                    Linkage_length = Math.sqrt(Hs ** 2 - Wr ** 2);
+                    Crank_offset = (Axt * 2) * Math.PI / 180;
+                    Dihedral_output = -(Axt - Aa);
+                    Anhedral_output = -(Dihedral_output - Flap);
+
+                    out += `Dihedral: ${Dihedral_output.toFixed(2)}°<br>`;
+                    out += `Anhedral: ${Anhedral_output.toFixed(2)}°<br>`;
+
+                } else if (type === "dual") {
+                    let Dihedral = val("Dihedral"), Anhedral = val("Anhedral"),
+                        H = val("H"), W = val("W"), D = val("D"), D2 = val("D2");
+                    let Y1 = Math.cos(Dihedral * Math.PI / 180) * W;
+                    let Y2 = Math.cos(Anhedral * Math.PI / 180) * W;
+                    let D3 = (Y1 + D) - D2;
+                    let D4 = (Y2 + D) - D2;
+                    let H2 = Math.sin(Dihedral * Math.PI / 180) * W;
+                    let H3 = Math.sin(Anhedral * Math.PI / 180) * W;
+                    let HA = H + H2, HB = H - H3;
+                    let Z1 = Math.sqrt(D3 ** 2 + HA ** 2);
+                    let Z2 = Math.sqrt(D4 ** 2 + HB ** 2);
+                    let AxD = Math.atan(D4 / HB);
+                    let AxU = Math.atan(D3 / HA);
+
+                    Crank_radii = (Z1 - Z2) / 2;
+                    Linkage_length = Z1 - Crank_radii;
+                    Crank_offset = (AxD + AxU) / 2;
+
+                } else if (type === "insideout") {
+                    let Dihedral = val("Dihedral"), Anhedral = val("Anhedral"),
+                        H = val("H"), W = val("W"), D = val("D");
+                    let Y1 = D / 2 - Math.cos(Anhedral * Math.PI / 180) * W;
+                    let Y2 = D / 2 - Math.cos(Dihedral * Math.PI / 180) * W;
+                    let H2 = Math.sin(Anhedral * Math.PI / 180) * W;
+                    let H3 = Math.sin(Dihedral * Math.PI / 180) * W;
+                    let HA = H + H2, HB = H - H3;
+                    let Z1 = Math.sqrt(Y1 ** 2 + HA ** 2);
+                    let Z2 = Math.sqrt(Y2 ** 2 + HB ** 2);
+                    let AxD = Math.atan(Y1 / HA) * 2;
+                    let AxU = Math.atan(Y2 / HB) * 2;
+
+                    Crank_radii = (Z1 - Z2) / 2;
+                    Linkage_length = Z1 - Crank_radii;
+                    Crank_offset = (AxD + AxU) / 2;
+                }
+
+                out += `Linkage Length: ${Linkage_length.toFixed(2)}<br>`;
+                out += `Crank Offset: ${(Crank_offset * 180 / Math.PI).toFixed(2)}°<br>`;
+                out += `Crank Radii: ${Crank_radii.toFixed(2)}<br>`;
+
+                resultsDiv.innerHTML = out;
+            }
+    </script>
+
+    <div id="overview">
+      <section>
+        <p></p>
+        <p>
+            This is a work in progress, not every part has been tested!!
+        </p>
+        <p></p>
+      </section>
+    
+
+</body>
+
+
+</main>
+
+<footer>
+    <div class="container">
+        <p>© 2025 Lift Laboratorium</p>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const menuToggle = document.querySelector(".menu-toggle");
+        const overlay = document.querySelector(".overlay");
+
+        menuToggle.addEventListener("click", () => {
+            menuToggle.classList.toggle("active");
+            overlay.classList.toggle("active");
+        });
+
+        // Close menu when clicking a link
+        document.querySelectorAll(".overlay-menu a").forEach(link => {
+            link.addEventListener("click", () => {
+                menuToggle.classList.remove("active");
+                overlay.classList.remove("active");
+            });
+        });
+
+        // Close when clicking outside menu
+        overlay.addEventListener("click", (e) => {
+            if (e.target === overlay) {
+                menuToggle.classList.remove("active");
+                overlay.classList.remove("active");
+            }
+        });
+    });
+</script>
+
+</body>
+
+</html>

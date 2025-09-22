@@ -117,6 +117,11 @@ nav.container {
   color: var(--accent);
 }
 
+/* Reset the link margins */ 
+header .nav-links li {
+  margin-left: 0; 
+}
+
 /* ===============================
    intro
    =============================== */
