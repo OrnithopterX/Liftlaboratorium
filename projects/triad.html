@@ -84,6 +84,7 @@
         </p>
 
         <h2>Flight Demonstration</h2>
+        <p> Version 3.4 </p>
         <div class="video-wrapper">
           <iframe src="https://www.youtube.com/embed/x-OtTq84EuU" title="Triad Flight Demonstration" frameborder="0"
             allowfullscreen>
@@ -95,22 +96,37 @@
         -->
 
         <h2>Design</h2>
+        <!-- 3D model viewport -->
+        <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer/dist/model-viewer.min.js"></script>
 
-        <model-viewer src="/models/Triad.glb"
-          alt="Triad 4.3, 3D Model"
-          auto-rotate
-          camera-controls
-          style="width: 100%; height: 100vh; margin: 0; padding: 0;">
+        <select id="modelSelect">
+          <option value="/models/Triad 4.2.glb">Version 4.2</option>
+          <option value="/models/Triad 3.4.glb">Version 3.4</option>
+          <option value="/models/Triad 1.2.glb">Version 1.2</option>
+        </select>
+
+        <model-viewer id="viewer" camera-controls auto-rotate style="width:100%; height:100vh;">
         </model-viewer>
 
-        <p>
-          3D design of the lastest version of the Triad Project. 
-        </p>
+        <script>
+          const viewer = document.getElementById('viewer');
+          const selector = document.getElementById('modelSelect');
+
+          // Load initial model
+          viewer.src = selector.value;
+
+          // Change model when selection changes
+          selector.addEventListener('change', () => {
+            viewer.src = selector.value;
+          });
+        </script>
+        <!-- End viewport-->
+
         
         <p>
           The Triad is not a forgiving platform. Still, the system began to work after I learned a few key lessons. One
           challenge
-          was that I developed everything in parallel—airframe, controls, electronics, software and tuning—without
+          was that I developed everything in parallel — airframe, controls, electronics, software and tuning — without
           knowing if any
           individual part was fully functional. Most of the time, I could only tell which parts weren’t behaving as
           expected; I
@@ -373,9 +389,6 @@
       <p>© 2025 Lift Laboratorium</p>
     </div>
   </footer>
-
-  <!-- Link for 3D veiwport-->
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer/dist/model-viewer.min.js"></script>
 
   <script>
     function toggleTabs() {
