@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>404 - Page Not Found</title>
+
+<style>
+    /* ================================
+            COLORS
+       ================================ */
+    :root {
+        --bg: #0d0d0d;
+        --primary: #00ff00;
+        --shadow-dark: #003300;
+        --shadow-light: #00994d;
+        --cursor: #00ff00;
+        --terminal-border: #00ff00;
+    }
+
+    body {
+        background: var(--bg);
+        color: var(--primary);
+        font-family: "Courier New", monospace;
+        text-align: center;
+        padding-top: 5%;
+        margin: 0;
+    }
+
+    /* ================================
+                Pixel-Art "404" Logo
+       ================================ */
+    .pixel-logo {
+        display: inline-block;
+        margin-bottom: 40px;
+    }
+
+    .pixel {
+        width: 20px;
+        height: 20px;
+        display: inline-block;
+        background: var(--primary);
+        image-rendering: pixelated;
+    }
+
+    .row {
+        height: 20px;
+        line-height: 0;
+    }
+
+    /* Add pixel shadows for a 3D 8-bit effect */
+    .pixel.shadow-dark { background: var(--bg); }
+    .pixel.shadow-light { background: var(--shadow-light); }
+
+    /* ================================
+       Terminal typing area
+       ================================ */
+    #terminal {
+        width: 80%;
+        margin: 0 auto;
+        text-align: left;
+        border-left: 2px solid var(--terminal-border);
+        padding-left: 20px;
+        font-size: 18px;
+        white-space: pre-wrap;
+        min-height: 150px;
+    }
+
+    /* Blinking cursor 
+    .cursor {
+        display: inline-block;
+        width: 10px;
+        height: 20px;
+        background: var(--cursor);
+        margin-left: 3px;
+        animation: blink 0.9s step-start infinite;
+    }*/
+
+    @keyframes blink {
+        50% { background: transparent; }
+    }
+
+    /* ================================
+       Pixel-style button
+       ================================ */
+    .pixel-btn {
+        display: inline-block;
+        margin-top: 30px;
+        padding: 12px 25px;
+        color: var(--primary);
+        text-decoration: none;
+        border: 3px solid var(--primary);
+        font-size: 20px;
+        font-family: monospace;
+        box-shadow: 
+            0 0 0 4px var(--bg),
+            0 0 0 6px var(--primary);
+        transition: 0.15s;
+    }
+
+    .pixel-btn:hover {
+        background: var(--primary);
+        color: var(--bg);
+        box-shadow: 
+            0 0 0 4px var(--bg),
+            0 0 0 6px var(--primary),
+            0 0 12px var(--primary);
+    }
+</style>
+</head>
+<body>
+
+<!-- ================================
+     Pixel 404 Logo
+     ================================ -->
+<div class="pixel-logo">
+    <div class="row">
+        <span class="pixel"></span><span class="pixel shadow-dark"></span><span class="pixel"></span>
+        <span class="pixel"></span><span class="pixel"></span><span class="pixel"></span>
+        <span class="pixel"></span><span class="pixel shadow-dark"></span><span class="pixel"></span>
+    </div>
+    <div class="row">
+        <span class="pixel"></span><span class="pixel"></span><span class="pixel"></span>
+        <span class="pixel"></span><span class="pixel shadow-dark"></span><span class="pixel"></span>
+        <span class="pixel"></span><span class="pixel"></span><span class="pixel"></span>
+    </div>
+    <div class="row">
+        <span class="pixel shadow-dark"></span><span class="pixel shadow-dark"></span><span class="pixel"></span>
+        <span class="pixel"></span><span class="pixel"></span><span class="pixel"></span>
+        <span class="pixel shadow-dark"></span><span class="pixel shadow-dark"></span><span class="pixel"></span>
+    </div>
+</div>
+
+<!-- Terminal typing -->
+<div id="terminal"></div>
+<div class="cursor"></div>
+
+<!-- Return button -->
+<a class="pixel-btn" href="/">RETURN HOME</a>
+
+<script>
+    const terminal = document.getElementById("terminal");
+    const lines = [
+        "404: Page Not Found\n",
+        ">\tError finding page or validating permissions",
+        ">\tThis page might be part of the world domination plan",
+        ">\tIf you believe this is an error, please contact us",
+        ">\tand return to the home page."
+    ];
+
+    let index = 0;
+    let charIndex = 0;
+
+    function typeLine() {
+        if (index >= lines.length) return;
+
+        let line = lines[index];
+
+        if (charIndex < line.length) {
+            terminal.textContent += line.charAt(charIndex);
+            charIndex++;
+            setTimeout(typeLine, 40);
+        } else {
+            terminal.textContent += "\n";
+            index++;
+            charIndex = 0;
+            setTimeout(typeLine, 300);
+        }
+    }
+
+    typeLine();
+</script>
+
+</body>
+</html>
