@@ -2,10 +2,10 @@
 <html lang="en">
 
 <head>
-  <title>Lynchpin UAV | Lift Laboratorium</title>
+  <title>LUMYX | Lift Laboratorium</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Lynchpin">
+  <meta name="description" content="A open-source lidar for reasearch and design">
   <meta name="author" content="Joshua Adcock">
   <meta property="og:image" content="../images/Liftlaboratorium_logo.png">
   <link rel="apple-touch-icon" sizes="180x180" href="../favicons/apple-touch-icon.png">
@@ -13,10 +13,6 @@
   <link rel="icon" type="image/png" sizes="16x16" href="../favicons/favicon-16x16.png">
   <link rel="manifest" href="../favicons/site.webmanifest">
   <link rel="stylesheet" href="../css/styles.css">
-  <!-- LaTeX Math funcitions via MathJax.org -->
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
-  <div id="MathJax_Message" style="display: none;"></div>
-    
 </head>
 
 <!-- Header -->
@@ -58,9 +54,10 @@
 
   <main class="container">
     <section class="intro">
-      <h1>The Lynchpin UAV research project</h1>
+      <h1>LUMYX</h1>
 
-      <p>A study in the lynchpin frame design</p>
+      <p>The LUMYX is an affordable open-source solution to 3D scanning.</p>
+
     </section>
 
     <div class="full-width-switch">
@@ -76,38 +73,9 @@
       <section>
         <h1>Overview</h1>
         <p>
-          This is just a random though dump as I dig into the design and math of the lynchpin configuration. 
+          The LUMYX LiDAR is aimed at archaeological reconstruction. 
         </p>
-
-        <h1> Design </h1>
-        <p> 
-            To start, the Lynchpin frame was designed Terrence Howard as a novel airframe with the abillty to sustain flight in all 6 axes. 
-            His Website can be found here: https://www.terryslynchpins.com/pages
-        </p>
-        <p>
-            The Lynchpin frame is built around the collapsed tetrahedron. Let’s dive into the design! 
-
-            If we take a Tetrahedron with a vertex radius of 1 unit, the resulting collapsed triangle has the sides lengths of 
-
-            \[x, \; x \sqrt{10}, \; \frac{1}{3}  x\]
-
-            with \(x\) being both the radius of the sphere and the hypotenuse. 
-
-            More math here…
-
-            However, if we look at the lines connecting the motors to the origin, things look a lot more simple. 
-            Each of the six lines are tangent to each other, so we can simplify the design to just \(x \pm , y \pm , z \pm \) vectors. 
-            Notice the motors are positioned tangentially to the inverted pair. Now the Kinamatic model becomes much more simple. 
-        </p>
-
-
-        <!-- added expanding text box -->
-        <div class="expand-box">
-          <button class="expand-toggle" onclick="toggleExpand(this)">More Info ▾</button>
-          <div class="expand-content">
-            <p>This section contains additional information about the project. Click again to collapse it.</p>
-          </div>
-        </div>
+        <p> Further information can be found on the offical <a href="https://github.com/OrnithopterX/Lumyx" target="_blank">Github page</a>.</p>
 
       </section>
     </div>
@@ -117,18 +85,32 @@
         <h2>Update Log</h2>
 
         <div class="blog-card">
-          <h3>Version 3</h3>
-          <p> Something interesting here </p>
+          <h3>LUMYX version 1</h3>
+          <p> 
+            Quite some time had passed before I thought about the lidar again. It was finished, but there was still a lot to poslish before it was easy to build. 
+            
+          </p>
         </div>
 
         <div class="blog-card">
-          <h3>Version 2</h3>
-          <p> Something even more interesting here </p>
+          <h3>Version 1.5</h3>
+          <p> 
+            This began due to a seemingly simple idea; what if the lidar could rotate greater than 180 degrees? By rotating from horizon line to horizon line every scan
+            pass, the lidar could finish an entire herisphereical scan with half the z-axis movement. I updated the p-axis mount to support this addional range of motion
+            and updated the code. The design worked perfectly. Because the z-axis only had to rotate 180 degrees, it was now possible to keep the wires out of the scan.
+            This launched version 2, which empisized wire management and ease of use, in the following days. 
+          </p>
         </div>
 
         <div class="blog-card">
           <h3>Version 1</h3>
-          <p> Update </p>
+          <p> 
+            This project started as a class assignment - build something using the C++ fundimentials learned over the semester. I descided to build a lidar, and started designing 
+            right away. I only had two weeks before I had to showcase the project, so only certain features were included. To add to the prussre, this was my first time using 
+            Onshape, so I was concurently learning Onshape and programming when parts were 3D printing. I finished the project a few days early, and polished the code and design
+            just a little before producing the showcase video. I aced the assignment, but the lidar left quite a bit to be desired. For this to be a functional tool, I needed to 
+            improve the design and ease of use. 
+          </p>
         </div>
 
       </section>
@@ -138,7 +120,7 @@
 
   <footer>
     <div class="container">
-      <p>© 2025 Lift Laboratorium</p>
+      <p>© 2026 Lift Laboratorium</p>
     </div>
   </footer>
 
